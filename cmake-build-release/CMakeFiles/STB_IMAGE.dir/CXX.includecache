@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../includes/stb_image_writer.h
+stdlib.h
+-
+stdio.h
+-
+stdarg.h
+-
+stdlib.h
+-
+string.h
+-
+math.h
+-
+assert.h
+-
+
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/stb_image.cpp
+stb_image_writer.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/stb_image_writer.h
+

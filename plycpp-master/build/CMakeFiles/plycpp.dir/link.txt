@@ -1,0 +1,2 @@
+/usr/bin/ar qc libplycpp.a CMakeFiles/plycpp.dir/src/plycpp.cpp.o
+/usr/bin/ranlib libplycpp.a

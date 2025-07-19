@@ -1,0 +1,319 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "libGLAD.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"add_definitions",
+			"include_directories",
+			"include",
+			"find_external_library",
+			"find_package"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"/usr/lib/x86_64-linux-gnu/cmake/CGAL/UseCGAL.cmake",
+			"/usr/local/share/eigen3/cmake/UseEigen3.cmake",
+			"/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 376,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 274,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 401,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 108,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 106,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 105,
+				"parent" : 0
+			},
+			{
+				"file" : 1,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 30,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 130,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 131,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 180,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 11
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 570,
+				"parent" : 12
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 358,
+				"parent" : 13
+			},
+			{
+				"file" : 2,
+				"parent" : 14
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 6,
+				"parent" : 15
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 259,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 267,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 272,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 320,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 370,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 379,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 380,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 381,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 382,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 383,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -fopenmp -fdiagnostics-color=always"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 1,
+					"define" : "CGAL_USE_CORE=1"
+				},
+				{
+					"backtrace" : 1,
+					"define" : "CGAL_USE_GMPXX=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "EIGEN_HAS_CXX17_OVERALIGN=0"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "MAGICKCORE_HDRI_ENABLE=1"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "/home/adiginton/Documents/SPH_heat/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/home/adiginton/Documents/SPH_heat/../../include"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "/home/adiginton/Documents/SPH_heat/build"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/adiginton/Documents/SPH_heat"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/home/adiginton/Documents/SPH_heat/.."
+				},
+				{
+					"backtrace" : 16,
+					"path" : "/usr/local/include/eigen3"
+				},
+				{
+					"backtrace" : 17,
+					"path" : "/usr/include/OpenEXR"
+				},
+				{
+					"backtrace" : 17,
+					"path" : "/usr/include/Imath"
+				},
+				{
+					"backtrace" : 18,
+					"path" : "/usr/local/include/ImageMagick-7"
+				},
+				{
+					"backtrace" : 19,
+					"path" : "/usr/include/pcl-1.14"
+				},
+				{
+					"backtrace" : 20,
+					"path" : "/usr/local/include/opencv4"
+				},
+				{
+					"backtrace" : 21,
+					"path" : "/home/adiginton/Documents/SPH_heat/build/configuration"
+				},
+				{
+					"backtrace" : 22,
+					"path" : "/home/adiginton/Documents/SPH_heat/includes/glew-1.13.0/include"
+				},
+				{
+					"backtrace" : 23,
+					"path" : "/home/adiginton/Documents/SPH_heat/includes"
+				},
+				{
+					"backtrace" : 24,
+					"path" : "/home/adiginton/Documents/SPH_heat/includes/imgui"
+				},
+				{
+					"backtrace" : 25,
+					"path" : "/home/adiginton/Documents/SPH_heat/Utlities"
+				},
+				{
+					"backtrace" : 26,
+					"path" : "/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch/include"
+				}
+			],
+			"language" : "C",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"id" : "GLAD::@6890427a1f51a3e7e1df",
+	"name" : "GLAD",
+	"nameOnDisk" : "libGLAD.a",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "glad.c",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

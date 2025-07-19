@@ -1,0 +1,892 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "sph"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"ADD_EXECUTABLE",
+			"link_directories",
+			"target_link_libraries",
+			"add_dependencies",
+			"add_definitions",
+			"include_directories",
+			"include",
+			"find_external_library",
+			"find_package"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"/usr/lib/x86_64-linux-gnu/cmake/CGAL/UseCGAL.cmake",
+			"/usr/local/share/eigen3/cmake/UseEigen3.cmake",
+			"/usr/lib/x86_64-linux-gnu/cmake/pcl/PCLConfig.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 384,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 65,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 248,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 405,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 408,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 274,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 401,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 108,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 106,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 105,
+				"parent" : 0
+			},
+			{
+				"file" : 1,
+				"parent" : 10
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 30,
+				"parent" : 11
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 130,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 131,
+				"parent" : 0
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 180,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 15
+			},
+			{
+				"command" : 7,
+				"file" : 3,
+				"line" : 570,
+				"parent" : 16
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 358,
+				"parent" : 17
+			},
+			{
+				"file" : 2,
+				"parent" : 18
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 6,
+				"parent" : 19
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 259,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 267,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 272,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 370,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 379,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 380,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 381,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 382,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 383,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 320,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -fopenmp -mavx  -Dcimg_use_tiff -Dcimg_use_jpeg  -Dcimg_use_png -Dcimg_use_fftw3 -Dcimg_use_openexr -Dcimg_use_magick -Dcimg_use_xshm -Dcimg_use_xrandr     -lglfw -lGL  -mavx -Ofast -ffast-math -DIMGUI_IMPL_OPENGL_LOADER_GLAD -O4 -fdiagnostics-color=always"
+				},
+				{
+					"backtrace" : 1,
+					"fragment" : "-frounding-math"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 1,
+					"define" : "CGAL_USE_CORE=1"
+				},
+				{
+					"backtrace" : 1,
+					"define" : "CGAL_USE_GMPXX=1"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "EIGEN_HAS_CXX17_OVERALIGN=0"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "MAGICKCORE_HDRI_ENABLE=1"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 8,
+					"path" : "/home/adiginton/Documents/SPH_heat/include"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/adiginton/Documents/SPH_heat/../../include"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "/home/adiginton/Documents/SPH_heat/build"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "/home/adiginton/Documents/SPH_heat"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "/home/adiginton/Documents/SPH_heat/.."
+				},
+				{
+					"backtrace" : 20,
+					"path" : "/usr/local/include/eigen3"
+				},
+				{
+					"backtrace" : 21,
+					"path" : "/usr/include/OpenEXR"
+				},
+				{
+					"backtrace" : 21,
+					"path" : "/usr/include/Imath"
+				},
+				{
+					"backtrace" : 22,
+					"path" : "/usr/local/include/ImageMagick-7"
+				},
+				{
+					"backtrace" : 23,
+					"path" : "/usr/include/pcl-1.14"
+				},
+				{
+					"backtrace" : 24,
+					"path" : "/home/adiginton/Documents/SPH_heat/build/configuration"
+				},
+				{
+					"backtrace" : 25,
+					"path" : "/home/adiginton/Documents/SPH_heat/includes/glew-1.13.0/include"
+				},
+				{
+					"backtrace" : 26,
+					"path" : "/home/adiginton/Documents/SPH_heat/includes"
+				},
+				{
+					"backtrace" : 27,
+					"path" : "/home/adiginton/Documents/SPH_heat/includes/imgui"
+				},
+				{
+					"backtrace" : 28,
+					"path" : "/home/adiginton/Documents/SPH_heat/Utlities"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch/include"
+				},
+				{
+					"backtrace" : 30,
+					"isSystem" : true,
+					"path" : "/usr/local/include/opencv4"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 5,
+			"id" : "Ext_NeighborhoodSearch::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "STB_IMAGE::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "GLAD::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "sph::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-fopenmp -mavx  -Dcimg_use_tiff -Dcimg_use_jpeg  -Dcimg_use_png -Dcimg_use_fftw3 -Dcimg_use_openexr -Dcimg_use_magick -Dcimg_use_xshm -Dcimg_use_xrandr     -lglfw -lGL  -mavx -Ofast -ffast-math -DIMGUI_IMPL_OPENGL_LOADER_GLAD -O4",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-rdynamic",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/home/adiginton/Documents/SPH_heat/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-L/usr/local/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/adiginton/Documents/SPH_heat/lib:/usr/local/lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lglfw",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lX11",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXrandr",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXinerama",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXi",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXxf86vm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXcursor",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lGL",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "libSTB_IMAGE.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lGL",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lGLU",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "libGLAD.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lGL",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lGLU",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "extern/install/NeighborhoodSearch/lib/libCompactNSearch.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ltiff",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ljpeg",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lz",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lpng",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lz",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lfftw3",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lOpenEXR-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lOpenEXRUtil-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lOpenEXRCore-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lIex-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lIlmThread-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lImath-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lMagick++-7.Q16HDRI",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lMagickWand-7.Q16HDRI",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lMagickCore-7.Q16HDRI",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXext",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXrandr",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lSM",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lICE",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lX11",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lXext",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_gapi.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_highgui.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_ml.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_objdetect.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_photo.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_stitching.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_video.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_videoio.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-llapack",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lblas",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lblas",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXinerama",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXi",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXxf86vm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXcursor",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lGL",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lGL",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lGLU",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "extern/install/NeighborhoodSearch/lib/libCompactNSearch.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ltiff",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ljpeg",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lz",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lpng",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lfftw3",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lOpenEXR-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lOpenEXRUtil-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lOpenEXRCore-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lIex-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lIlmThread-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lImath-3_1",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lMagick++-7.Q16HDRI",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lMagickWand-7.Q16HDRI",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lMagickCore-7.Q16HDRI",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lXext",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lSM",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lICE",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lX11",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lXext",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-llapack",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lblas",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lgmpxx",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmpfr",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lgmp",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_imgcodecs.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_dnn.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_calib3d.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_features2d.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_flann.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_imgproc.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/local/lib/libopencv_core.so.4.7.0",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "sph",
+	"nameOnDisk" : "sph",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "lgl/Error.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "lgl/Shader.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "lgl/FluidShader.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "lgl/Util.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "includes/imgui/imgui.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "includes/imgui/imgui_demo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "includes/imgui/imgui_draw.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "includes/imgui/imgui_widgets.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "includes/imgui/imgui_impl_glfw.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "includes/imgui/imgui_impl_opengl3.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

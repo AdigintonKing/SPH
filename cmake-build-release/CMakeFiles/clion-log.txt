@@ -1,0 +1,66 @@
+/home/helton/Downloads/CLion-2021.1.2/clion-2021.1.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX
+CMake Warning (dev) at /home/helton/Downloads/CLion-2021.1.2/clion-2021.1.2/bin/cmake/linux/share/cmake-3.19/Modules/FindOpenGL.cmake:293 (message):
+  Policy CMP0072 is not set: FindOpenGL prefers GLVND by default when
+  available.  Run "cmake --help-policy CMP0072" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  FindOpenGL found both a legacy GL library:
+
+    OPENGL_gl_LIBRARY: /usr/lib/x86_64-linux-gnu/libGL.so
+
+  and GLVND libraries for OpenGL and GLX:
+
+    OPENGL_opengl_LIBRARY: /usr/lib/x86_64-linux-gnu/libOpenGL.so
+    OPENGL_glx_LIBRARY: /usr/lib/x86_64-linux-gnu/libGLX.so
+
+  OpenGL_GL_PREFERENCE has not been set to "GLVND" or "LEGACY", so for
+  compatibility with CMake 3.10 and below the legacy GL library will be used.
+Call Stack (most recent call first):
+  CMakeLists.txt:44 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- GLM_INCLUDE_DIR = /usr/include
+-- GLM included at /usr/include
+-- Found GLFW3 in /usr/include
+-- Found ASSIMP: /usr/lib/x86_64-linux-gnu/libassimp.so
+-- Found ASSIMP in /usr/include
+-- Using header-only CGAL
+-- Targetting Unix Makefiles
+-- Using /usr/bin/c++ compiler.
+-- Boost include dirs: /usr/include
+-- Boost libraries:    
+-- Using gcc version 4 or later. Adding -frounding-math
+-- Build type: Release
+-- USING CXXFLAGS = ' -fopenmp -O3 -DNDEBUG'
+-- USING EXEFLAGS = '  '
+-- Requested component: Core
+-- Requested component: MPFR
+-- Requested component: GMPXX
+-- Requested component: GMP
+CMake Warning at CMakeLists.txt:176 (FIND_PACKAGE):
+  By not providing "FindOpenCV.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "OpenCV", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "OpenCV" with any
+  of the following names:
+
+    OpenCVConfig.cmake
+    opencv-config.cmake
+
+  Add the installation prefix of "OpenCV" to CMAKE_PREFIX_PATH or set
+  "OpenCV_DIR" to a directory containing one of the above files.  If "OpenCV"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Could NOT find LAPACK (missing: LAPACK_LIBRARIES) 
+    Reason given by package: LAPACK could not be found because dependency BLAS could not be found.
+
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Checking for module 'fftw3'
+--   No package 'fftw3' found
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release

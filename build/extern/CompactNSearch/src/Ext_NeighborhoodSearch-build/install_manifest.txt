@@ -1,0 +1,6 @@
+/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch/include/CompactNSearch
+/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch/include/Config.h
+/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch/include/CompactNSearch.h
+/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch/include/PointSet.h
+/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch/include/DataStructures.h
+/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch/lib/libCompactNSearch.a

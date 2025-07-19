@@ -1,0 +1,1 @@
+cmd='/usr/bin/cmake;-DCMAKE_BUILD_TYPE=;-DCMAKE_CXX_FLAGS=;-DCMAKE_CXX_FLAGS_RELEASE=-O3 -DNDEBUG;-DCMAKE_INSTALL_PREFIX:PATH=/home/adiginton/Documents/SPH_heat/build/extern/install/NeighborhoodSearch;-DUSE_DOUBLE_PRECISION:BOOL=;-DBUILD_DEMO:BOOL=OFF;-GUnix Makefiles;-S;<SOURCE_DIR><SOURCE_SUBDIR>;-B;<BINARY_DIR>'

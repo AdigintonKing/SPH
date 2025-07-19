@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="SPH"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\CMake\;CMake Files\cmake-build-release\;CMake Files\cmake-build-release\extern\;CMake Files\cmake-build-release\extern\CompactNSearch\;CMake Files\cmake-build-release\extern\CompactNSearch\tmp\;CMake Files\cmake\;CMake Files\cmake\modules\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.74.0\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.74.0\;CMake Files\configuration\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Ext_NeighborhoodSearch">
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 Ext_NeighborhoodSearch"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="STB_IMAGE">
+				<Option output="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/libSTB_IMAGE.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCGAL_USE_GMPXX=1"/>
+					<Add option="-DCGAL_USE_CORE=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/.."/>
+					<Add directory="/usr/include/OpenEXR"/>
+					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/configuration"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/glew-1.13.0/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/Utlities"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include"/>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 STB_IMAGE"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="STB_IMAGE/fast">
+				<Option output="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/libSTB_IMAGE.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCGAL_USE_GMPXX=1"/>
+					<Add option="-DCGAL_USE_CORE=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/.."/>
+					<Add directory="/usr/include/OpenEXR"/>
+					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/configuration"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/glew-1.13.0/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/Utlities"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include"/>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 STB_IMAGE/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="GLAD">
+				<Option output="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/libGLAD.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCGAL_USE_GMPXX=1"/>
+					<Add option="-DCGAL_USE_CORE=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/.."/>
+					<Add directory="/usr/include/OpenEXR"/>
+					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/configuration"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/glew-1.13.0/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/Utlities"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include"/>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 GLAD"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="GLAD/fast">
+				<Option output="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/libGLAD.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCGAL_USE_GMPXX=1"/>
+					<Add option="-DCGAL_USE_CORE=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/.."/>
+					<Add directory="/usr/include/OpenEXR"/>
+					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/configuration"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/glew-1.13.0/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/Utlities"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include"/>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 GLAD/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sph">
+				<Option output="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/sph" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCGAL_USE_GMPXX=1"/>
+					<Add option="-DCGAL_USE_CORE=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/.."/>
+					<Add directory="/usr/include/OpenEXR"/>
+					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/configuration"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/glew-1.13.0/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/Utlities"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include"/>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 sph"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sph/fast">
+				<Option output="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/sph" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCGAL_USE_GMPXX=1"/>
+					<Add option="-DCGAL_USE_CORE=1"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/.."/>
+					<Add directory="/usr/include/OpenEXR"/>
+					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/configuration"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/glew-1.13.0/include"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/Utlities"/>
+					<Add directory="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include"/>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 sph/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/glad.c">
+			<Option target="GLAD"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui.h">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui_demo.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui_draw.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui_impl_glfw.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui_impl_glfw.h">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui_impl_opengl3.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui_impl_opengl3.h">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/includes/imgui/imgui_widgets.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/lgl/Error.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/lgl/FluidShader.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/lgl/Shader.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/lgl/Util.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/main.cpp">
+			<Option target="sph"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/stb_image.cpp">
+			<Option target="STB_IMAGE"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/CMake/NeighborhoodSearch.cmake">
+			<Option virtualFolder="CMake Files\CMake\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/CMake/SetUpExternalProjects.cmake">
+			<Option virtualFolder="CMake Files\CMake\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/CompactNSearch/tmp/Ext_NeighborhoodSearch-cfgcmd.txt.in">
+			<Option virtualFolder="CMake Files\cmake-build-release\extern\CompactNSearch\tmp\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake/modules/FindASSIMP.cmake">
+			<Option virtualFolder="CMake Files\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake/modules/FindGLFW3.cmake">
+			<Option virtualFolder="CMake Files\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake/modules/FindGLM.cmake">
+			<Option virtualFolder="CMake Files\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGALConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGALConfigBuildVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGALConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_Common.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_CreateSingleSourceCGALProgram.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_GeneratorSpecificSettings.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_Macros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_SCM.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_SetupBoost.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_SetupCGALDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_SetupCGAL_CoreDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_SetupGMP.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_TweakFindBoost.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_VersionUtils.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_add_test.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_display_flags.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_enable_end_of_configuration_hook.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_setup_target_dependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/CGAL_target_use_TBB.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/FindGMP.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/FindGMPXX.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/FindMPFR.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/CGAL/UseCGAL.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\CGAL\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.74.0\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.74.0\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.74.0\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.74.0\"/>
+		</Unit>
+		<Unit filename="/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/configuration/root_directory.h.in">
+			<Option virtualFolder="CMake Files\configuration\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

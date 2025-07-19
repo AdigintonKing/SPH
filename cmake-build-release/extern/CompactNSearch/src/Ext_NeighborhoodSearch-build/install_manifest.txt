@@ -1,0 +1,6 @@
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include/CompactNSearch
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include/Config.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include/CompactNSearch.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include/PointSet.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/include/DataStructures.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/cmake-build-release/extern/install/NeighborhoodSearch/lib/libCompactNSearch.a

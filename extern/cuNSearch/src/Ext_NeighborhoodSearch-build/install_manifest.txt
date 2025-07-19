@@ -1,0 +1,5 @@
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/build/extern/install/NeighborhoodSearch/include/PointSet.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/build/extern/install/NeighborhoodSearch/include/ActivationTable.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/build/extern/install/NeighborhoodSearch/include/Common.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/build/extern/install/NeighborhoodSearch/include/cuNSearch.h
+/home/helton/SPH/SPH_2D_CompactNSearch_GLFW_AVX/build/extern/install/NeighborhoodSearch/lib/libcuNSearch.a
