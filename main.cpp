@@ -1398,7 +1398,7 @@ void renderParticles()
         Aux_color.G =sph.particles.C[i][1];
         Aux_color.B =sph.particles.C[i][2];
         Aux_color.A =sph.particles.C[i][3];
-        sph.NormalizedColor(sph.particles.T[i],&Aux_color);
+        //sph.NormalizedColor(sph.particles.T[i],&Aux_color);
         sph.particles.C[i][0]=Aux_color.R;
         sph.particles.C[i][1]=Aux_color.G;
         sph.particles.C[i][2]=Aux_color.B;

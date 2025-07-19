@@ -663,11 +663,11 @@ screenFilename = "screenVis";
   std::vector<glm::vec3> sample_hex_Image(float &spacing, float jitter, Vector min, Vector max,std::vector<glm::vec4> *Vcolor) {
        imgok=true;
       Image image;
-      image.read("./../img/usp_each.png");
+      //image.read("./../img/usp_each.png");
       //image.read("./../img/Antonio.png");
       //image.read("./../img/tcc.png");
       //image.read("./../img/heitor.png");
-      //image.read("./../img/Amanda2.png");
+      image.read("./../img/Amanda2.png");
       //image.read("./../img/Fig.png");
       //image.read("./../img/Edsandra.png");
       //image.read("./../img/Ivan.png");
@@ -890,8 +890,8 @@ void initFromImage(float jitter = 0.02, float spacing = 0.015) {
        else
 	   {
 	     C->R = 0.0;
-	     C->G = 0.0;
-	     C->B=1.0;
+         C->G = 0.0;
+         C->B=1.0;
 	   }
   
   }
