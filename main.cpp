@@ -681,6 +681,7 @@ int main(int argc, char ** argv)
 
     // glfw: initialize and configure
     // ------------------------------
+    sph.initFromCloud();
     sph.initFromImage();
     //sph.init();
     glfwInit();

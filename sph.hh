@@ -606,59 +606,64 @@ screenFilename = "screenVis";
 
       glm::vec3 pos;
       std::vector<glm::vec3> positions;
+      std::vector< glm::vec4 > temp_color;
+      std::vector< glm::vec3 > temp_normals;
 
-      //plycpp::PLYData data;
-
-
-      //plycpp::load("./../clouds/pedra2.ply", data);
-      //plycpp::load(std::string(MODELS_DIRECTORY) + "/bunny_ascii.ply", data);
-
-
-      /*cv::Mat points, colors;
-      DataImporter importer(points, colors, "./../clouds/pedra.ply");
-
-      // Call importer method to process
-      importer.importPCDataFromFile();
-
-      // Data can be accessed using "points" and "colors" matrices
-      std::cout <<points << colors; // Remove this line for large datasets
-
-    // Export data to see
-    DataExporter exporter(points, colors, "output_test.ply", PLY_ASCII);
-    exporter.exportToFile();
-    */
-
-      //pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
-      // Carregar o arquivo PLY
-      //pcl::io::loadPLYFile<pcl::PointXYZ>("./../clouds/pedra.ply", *cloud);
-
-      /*if (pcl::io::loadPLYFile<pcl::PointXYZ>("./../clouds/pedra.ply", *cloud)){
-          std::cerr << "Falha ao carregar o arquivo " << std::endl;
-      }*/
-
-      /*for (const auto& point : cloud) {
-          positions.push_back(glm::Point3f(point.x, point.y, point.z));
-      }*/
-
-      return positions;
-
-  }
-
-  /*// Função que lê uma nuvem de pontos de um arquivo PLY e a retorna
-  pcl::PointCloud<pcl::PointXYZ>::Ptr lerNuvemDePontos(const std::string& arquivo_ply) {
-      // Cria um ponteiro para a nuvem de pontos
-      pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
-      //auto cloud = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
-
-      // Tenta ler o arquivo PLY
-      if (pcl::io::loadPLYFile<pcl::PointXYZ>(arquivo_ply, *cloud) == -1) {
-          PCL_ERROR("Não foi possível ler o arquivo PLY %s \n", arquivo_ply.c_str());
-          return nullptr; // Retorna nullptr em caso de erro
+      FILE * file = fopen("./../clouds/pedra.ply", "r");
+      if( file == NULL ){
+          printf("Impossible to open the file !\n");
+          return positions;
       }
 
-      // Retorna a nuvem de pontos carregada
-      return cloud;
-  }*/
+      Color vertex_color;
+      int checker;
+      checker = 0;
+      int loop = 1;
+
+      while( 1 ){
+
+          char lineHeader[128];
+          int res = fscanf(file, "%s", lineHeader);
+          //float res1 = std::stof(res);
+          if (res == EOF)
+              break;
+
+           if ( strcmp( lineHeader, "end_header" ) == 0 ){
+              checker = 1;
+
+          }else if (checker ==1){
+
+            glm::vec3 vertex;
+            glm::vec3 normals;
+            glm::vec4 color;
+
+            std::string fs(lineHeader);
+            float f=std::stof(fs);//this is much better way to do it
+
+            vertex.x = f;
+
+            fscanf(file, "%f %f %f %f %f %f %f %f \n", &vertex.y, &vertex.z, &normals.x, &normals.y, &normals.z, &color.x, &color.y, &color.z);
+
+            color[0] = color[0] / 255;
+            color[1] = color[1] / 255;
+            color[2] = color[2] / 255;
+            color[3] = 1.0;
+            positions.push_back(vertex);
+            temp_normals.push_back(normals);
+            Vcolor->push_back(color);
+
+            std::cout << loop << "(" << vertex.x << "," << vertex.y << "," << vertex.z <<") ="
+                      << " R " << color[0]
+                      << " G " << color [1]
+                      << " B " << color[2]<< std::endl;
+
+            loop++;
+          }
+        }
+
+      return positions;
+  }
+
 
   std::vector<glm::vec3> sample_hex_Image(float &spacing, float jitter, Vector min, Vector max,std::vector<glm::vec4> *Vcolor) {
        imgok=true;
@@ -667,7 +672,7 @@ screenFilename = "screenVis";
       //image.read("./../img/Antonio.png");
       //image.read("./../img/tcc.png");
       //image.read("./../img/heitor.png");
-      image.read("./../img/Amanda2.png");
+      //image.read("./../img/Amanda2.png");
       //image.read("./../img/Fig.png");
       //image.read("./../img/Edsandra.png");
       //image.read("./../img/Ivan.png");
@@ -676,7 +681,7 @@ screenFilename = "screenVis";
       //image.read("./../img/Fatima.png");
       //image.read("./../img/Frank.png");
       //image.read("./../img/Elenir.png");
-      //image.read("./../img/Lapis.png");
+      image.read("./../img/Lapis.png");
       //image.read("./../img/Ana.png");
      // CImg<double> image("./../img/heitor.png");
       //CImg<double> image("./../img/Ana.png");
@@ -748,6 +753,16 @@ screenFilename = "screenVis";
     return positions;
 
 }
+
+void initFromCloud(float jitter = 0.02, float spacing = 0.015){
+    this->jitter = jitter;
+    this->spacing = spacing;
+    Vector min = Vector(-0.69,0.5,0);
+    Vector max = Vector(0.91, 1.9, 0);
+    std::vector<glm::vec4> Vcolor;
+    std::vector<glm::vec3> pos1 = sample_hex_cloud(this->spacing, jitter, min, max,&Vcolor);
+}
+
 
 void initFromImage(float jitter = 0.02, float spacing = 0.015) {
     this->jitter = jitter;
