@@ -682,7 +682,7 @@ int main(int argc, char ** argv)
     // glfw: initialize and configure
     // ------------------------------
     sph.initFromCloud();
-    sph.initFromImage();
+    //sph.initFromImage();
     //sph.init();
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

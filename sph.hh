@@ -760,7 +760,53 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     Vector min = Vector(-0.69,0.5,0);
     Vector max = Vector(0.91, 1.9, 0);
     std::vector<glm::vec4> Vcolor;
-    std::vector<glm::vec3> pos1 = sample_hex_cloud(this->spacing, jitter, min, max,&Vcolor);
+    std::vector<glm::vec3> pos = sample_hex_cloud(this->spacing, jitter, min, max,&Vcolor);
+
+    particles.m_count = pos.size();
+    steps=0;
+    //particles.clear();
+
+    particles.x.resize(pos.size());
+
+    particles.T.resize(pos.size());
+    //particles.a.resize(pos.size());
+    particles.rho.clear();
+    particles.a.reset(new glm::vec4[pos.size()]);
+    particles.rho.resize(pos.size());
+    particles.rho_squared.resize(pos.size());
+    particles.v_smoothed.reset(new glm::vec4[pos.size()]);
+    particles.v.resize(pos.size());
+    particles.p.resize(pos.size());
+    particles.dt.resize(pos.size());
+    particles.C.resize(pos.size());
+
+    for (int i = 0; i < pos.size(); i++) {
+        particles.x[i][0] =pos[i].x; particles.x[i][1] =pos[i].y; particles.x[i][2] =pos[i].z;// glm::vec4(pos[i].x,pos[i].y,pos[i].z,1.0);
+        particles.v[i]={0.0,0.0,0.0};
+        particles.a[i] = glm::vec4(0.0);
+        particles.C[i][0]= Vcolor[i][0];
+        particles.C[i][1]= Vcolor[i][1];
+        particles.C[i][2]= Vcolor[i][2];
+        particles.C[i][3]= Vcolor[i][3];
+    }
+
+    int q = smoothing_radius(this->spacing * params.rel_smoothing_radius);
+    // reserve memory for  and compute
+    neighbors.resize(n_particles());
+    // update search data structures
+    updateSearcher();
+    //updateSearcher(grid);
+
+
+    for (int i = 0; i < n_particles(); ++i) {
+        //neighbors[i].reserve(2*q);
+        particles.T[i]=25.0; particles.dt[i]=0.0;
+
+        //tree.neighbors(particles[i].x, neighbors[i]);
+    }
+    Tmax=25.0;Tmin=25.0;
+    const_Viscosity = Scalarf8(2.0*params.nu * m);
+    std::cout << "created " << n_particles() << " particles." << std::endl;
 }
 
 
