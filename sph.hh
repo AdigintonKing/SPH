@@ -604,12 +604,16 @@ screenFilename = "screenVis";
 
   std::vector<glm::vec3> sample_hex_cloud(float spacing, float jitter, Vector min, Vector max, std::vector<glm::vec4> *Vcolor) {
 
+      imgok=true;
       glm::vec3 pos;
       std::vector<glm::vec3> positions;
       std::vector< glm::vec4 > temp_color;
       std::vector< glm::vec3 > temp_normals;
 
-      FILE * file = fopen("./../clouds/pedra.ply", "r");
+      FILE * file = fopen("./../clouds/pedracopy.ply", "r");
+      //FILE * file = fopen("./../clouds/sem_pedra.ply", "r");
+        //FILE * file = fopen("./../clouds/sem_parede.ply", "r");
+
       if( file == NULL ){
           printf("Impossible to open the file !\n");
           return positions;
@@ -618,7 +622,14 @@ screenFilename = "screenVis";
       Color vertex_color;
       int checker;
       checker = 0;
-      int loop = 1;
+      //Contador de vertices
+      //int loop = 1;
+
+    //Defiindo w = 2.0 e h = 3.0
+      const float spacing_2 = (max.x-min.x)/2.0;
+      const float yspacing = spacing*sqrt(3.0);
+      const float yspacing_2 = (max.y-min.y)/3.0;
+      spacing = 1.0*(spacing_2+yspacing_2)*0.5;
 
       while( 1 ){
 
@@ -638,26 +649,35 @@ screenFilename = "screenVis";
             glm::vec4 color;
 
             std::string fs(lineHeader);
-            float f=std::stof(fs);//this is much better way to do it
+            float f=std::stof(fs);
 
             vertex.x = f;
 
-            fscanf(file, "%f %f %f %f %f %f %f %f \n", &vertex.y, &vertex.z, &normals.x, &normals.y, &normals.z, &color.x, &color.y, &color.z);
+            fscanf(file, "%f %f %f %f %f %f %f %f %f\n", &vertex.y, &vertex.z, &normals.x, &normals.y, &normals.z, &color.x, &color.y, &color.z, &color[3]);
 
             color[0] = color[0] / 255;
             color[1] = color[1] / 255;
             color[2] = color[2] / 255;
-            color[3] = 1.0;
+            color[3] = color[3] / 255;
+            //color[3] = 1.0;
+            if (jitter != 0.0f) {
+                vertex += jitter*spacing*rand01()*randomDirection();
+                //p.z = 0.0;
+            }
+            vertex.x += spacing_2;
+            vertex.y += spacing_2;
+            vertex.z += spacing_2;
+
             positions.push_back(vertex);
             temp_normals.push_back(normals);
             Vcolor->push_back(color);
 
-            std::cout << loop << "(" << vertex.x << "," << vertex.y << "," << vertex.z <<") ="
+            /*std::cout << loop << "(" << vertex.x << "," << vertex.y << "," << vertex.z <<") ="
                       << " R " << color[0]
                       << " G " << color [1]
                       << " B " << color[2]<< std::endl;
 
-            loop++;
+            loop++;*/
           }
         }
 
@@ -757,8 +777,10 @@ screenFilename = "screenVis";
 void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     this->jitter = jitter;
     this->spacing = spacing;
-    Vector min = Vector(-0.69,0.5,0);
-    Vector max = Vector(0.91, 1.9, 0);
+    //Vector min = Vector(-0.69,0.5,0);
+    //Vector max = Vector(0.91, 1.9, 0);
+    Vector min = Vector(-0.69, 0.5, -0.69);
+    Vector max = Vector(0.91, 1.9, 0.91);
     std::vector<glm::vec4> Vcolor;
     std::vector<glm::vec3> pos = sample_hex_cloud(this->spacing, jitter, min, max,&Vcolor);
 
@@ -1126,7 +1148,7 @@ void initFromImage(float jitter = 0.02, float spacing = 0.015) {
         {
                 particles.v_smoothed[i].x=vi_smoothed_avx.x().reduce();
                 particles.v_smoothed[i].y=vi_smoothed_avx.y().reduce();
-                //particles.v_smoothed[i].z=vi_smoothed_avx.z().reduce();
+                particles.v_smoothed[i].z=vi_smoothed_avx.z().reduce();
                 particles.v_smoothed[i] /= ww;
         }
 

@@ -1394,7 +1394,7 @@ void renderParticles()
     }
     TColorRGBA Aux_color;
     //#pragma omp parallel for
-    for(uint i=0; i<np; i++){
+    /*for(uint i=0; i<np; i++){
         Aux_color.R =sph.particles.C[i][0];
         Aux_color.G =sph.particles.C[i][1];
         Aux_color.B =sph.particles.C[i][2];
@@ -1404,7 +1404,7 @@ void renderParticles()
         sph.particles.C[i][1]=Aux_color.G;
         sph.particles.C[i][2]=Aux_color.B;
         sph.particles.C[i][3]=Aux_color.A;
-    }
+    }*/
     glBindVertexArray(particlesVAO);
     glm::vec4 c;
     //glm::vec4 ci(0.0f,0.0f,0.0f,0.0f);
