@@ -175,6 +175,8 @@ public:
   std::vector<float> T;
   // temperature gradient
   std::vector<float> dt;
+  // HSV h value
+  std::vector<float> colorh;
   std::vector<std::array<float, 4>> C;
 
   std::unique_ptr<bool[]>  m_alive;
@@ -610,9 +612,10 @@ screenFilename = "screenVis";
       std::vector< glm::vec4 > temp_color;
       std::vector< glm::vec3 > temp_normals;
 
-      FILE * file = fopen("./../clouds/pedracopy.ply", "r");
+      //FILE * file = fopen("./../clouds/pedracopy.ply", "r");
+       //FILE * file = fopen("./../clouds/elefante_pr.ply", "r");
       //FILE * file = fopen("./../clouds/sem_pedra.ply", "r");
-        //FILE * file = fopen("./../clouds/sem_parede.ply", "r");
+        FILE * file = fopen("./../clouds/sem_parede.ply", "r");
 
       if( file == NULL ){
           printf("Impossible to open the file !\n");
@@ -801,6 +804,7 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     particles.p.resize(pos.size());
     particles.dt.resize(pos.size());
     particles.C.resize(pos.size());
+    particles.colorh.resize(pos.size());
 
     for (int i = 0; i < pos.size(); i++) {
         particles.x[i][0] =pos[i].x; particles.x[i][1] =pos[i].y; particles.x[i][2] =pos[i].z;// glm::vec4(pos[i].x,pos[i].y,pos[i].z,1.0);
@@ -810,6 +814,31 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         particles.C[i][1]= Vcolor[i][1];
         particles.C[i][2]= Vcolor[i][2];
         particles.C[i][3]= Vcolor[i][3];
+
+        float r = particles.C[i][0];
+        float g = particles.C[i][1];
+        float b = particles.C[i][2];
+
+        float max = std::max({r, g, b});
+        float min = std::min({r, g, b});
+        float delta = max - min;
+
+        if (delta == 0) {
+            particles.colorh[i] = 0;
+        } else {
+            if (max == r) {
+                particles.colorh[i] = 60 * fmod(((g - b) / delta), 6);
+            } else if (max == g) {
+                particles.colorh[i] = 60 * (((b - r) / delta) + 2);
+            } else { // max == b
+                particles.colorh[i] = 60 * (((r - g) / delta) + 4);
+            }
+            if (particles.colorh[i] < 0) {
+                particles.colorh[i] += 360;
+            }
+        }
+
+        particles.colorh[i] = particles.colorh[i] / 360;
     }
 
     int q = smoothing_radius(this->spacing * params.rel_smoothing_radius);
@@ -819,14 +848,17 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     updateSearcher();
     //updateSearcher(grid);
 
+    Tmax=26.0;Tmin=21.9;
 
     for (int i = 0; i < n_particles(); ++i) {
         //neighbors[i].reserve(2*q);
-        particles.T[i]=25.0; particles.dt[i]=0.0;
+        particles.T[i] = (particles.colorh[i] * (Tmax-Tmin)) + Tmin;
+        //particles.T[i]=25.0;
+        particles.dt[i]=0.0;
 
         //tree.neighbors(particles[i].x, neighbors[i]);
     }
-    Tmax=25.0;Tmin=25.0;
+
     const_Viscosity = Scalarf8(2.0*params.nu * m);
     std::cout << "created " << n_particles() << " particles." << std::endl;
 }
@@ -892,11 +924,6 @@ void initFromImage(float jitter = 0.02, float spacing = 0.015) {
   void init(float jitter = 0.02, float spacing = 0.012) {
     this->jitter = jitter;
     this->spacing = spacing;
-
-    //std::vector<glm::vec4> Vcolor; //Para Nuvem
-    //std::string caminhoArquivo = "./../clouds/pedra.ply";
-    //auto nuvem = lerNuvemDePontos(caminhoArquivo);
-
     
     // fill half a [0,1]^2 box with particles
     std::vector<glm::vec3> pos = sample_hex(spacing, jitter, Vector(-0.69,0.7,0), Vector(0.09, 2.3, 0));
