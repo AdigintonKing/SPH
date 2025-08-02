@@ -565,7 +565,8 @@ void idle()
 
 
     if (running) {
-    sph.step();
+    //sph.step();
+    sph.stepThermal();
     niter++;
 
 

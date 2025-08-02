@@ -571,6 +571,47 @@ screenFilename = "screenVis";
       compute_mass();
   }
   
+  float RGBtoCelsius(glm::vec4 Color){
+
+      float temperatura;
+      temperatura = (0.299 * 255 * Color [0]) + (0.587 * 255 * Color[1]) + (0.114 * 255 * Color[2]);
+
+      /*
+      if (Color [2] > Color [0] and Color [2] > Color [1]){
+    // Cor mais fria (azul)
+          temperatura = 6500 - temperatura * 3000;
+      }else if (Color [0] > Color [1]){
+    // Cor mais quente (vermelho)
+          temperatura = 2000 + temperatura * 3000;
+      }else{
+    // Cor intermediária
+          temperatura = 4000 + temperatura * 2000;
+      }
+    */
+
+      temperatura = temperatura * 257;
+      temperatura = (temperatura/100) - 273.15;
+
+      return temperatura;
+}
+
+ glm::vec4 CelsiustoRGB(float temperaturapx){
+
+     glm::vec4 RGBAT;
+     temperaturapx += 273.15;
+     temperaturapx = temperaturapx * 100;
+     temperaturapx = temperaturapx / 257;
+
+     float red;
+     float green;
+     float blue;
+
+      //temperatura = (0.299 * 255 * Color [0]) + (0.587 * 255 * Color[1]) + (0.114 * 255 * Color[2]);
+
+      return RGBAT;
+  }
+
+
   std::vector<glm::vec3> sample_hex(float spacing, float jitter, Vector min, Vector max) {
     const float spacing_2 = spacing/2;
     const float yspacing = spacing*sqrt(3.0);
@@ -815,7 +856,19 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         particles.C[i][2]= Vcolor[i][2];
         particles.C[i][3]= Vcolor[i][3];
 
-        float r = particles.C[i][0];
+        glm::vec4 coresTemporarias;
+        coresTemporarias[0] = particles.C[i][0];
+        coresTemporarias[1] = particles.C[i][1];
+        coresTemporarias[2] = particles.C[i][2];
+        coresTemporarias[3] = particles.C[i][3];
+
+        particles.T[i] = RGBtoCelsius(coresTemporarias);
+
+        std::cout << "("<< " R " << coresTemporarias[0]
+                  << " G " << coresTemporarias [1]
+                  << " B " << coresTemporarias[2]<< "-" << particles.T[i] << ")" << std::endl;
+
+        /*float r = particles.C[i][0];
         float g = particles.C[i][1];
         float b = particles.C[i][2];
 
@@ -838,7 +891,7 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
             }
         }
 
-        particles.colorh[i] = particles.colorh[i] / 360;
+        particles.colorh[i] = particles.colorh[i] / 360;*/
     }
 
     int q = smoothing_radius(this->spacing * params.rel_smoothing_radius);
@@ -848,16 +901,19 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     updateSearcher();
     //updateSearcher(grid);
 
+    //Temperaturas máximas e mínimas de acordo com as temperaturas da imagem
     Tmax=26.0;Tmin=21.9;
 
+    /*
     for (int i = 0; i < n_particles(); ++i) {
-        //neighbors[i].reserve(2*q);
-        particles.T[i] = (particles.colorh[i] * (Tmax-Tmin)) + Tmin;
+        //Informacao de temperatura de acordo com a cor do ponto
+        //particles.T[i] = (particles.colorh[i] * (Tmax-Tmin)) + Tmin;
         //particles.T[i]=25.0;
         particles.dt[i]=0.0;
 
         //tree.neighbors(particles[i].x, neighbors[i]);
     }
+    */
 
     const_Viscosity = Scalarf8(2.0*params.nu * m);
     std::cout << "created " << n_particles() << " particles." << std::endl;
@@ -1307,6 +1363,231 @@ NormMaxV=-100000.0;NormMinV=10000.0;
 
     }
   }
+
+void stepThermal() {
+        // 0th pass: update search data structure (rebuild from scratch)
+        updateSearcher();
+        //updateSearcher(grid);
+
+
+
+        //float p1,p2,p3;
+
+
+        auto t0 = std::chrono::high_resolution_clock::now();
+// second pass: compute accelerations and smoothed velocity, add gravity
+#pragma omp parallel for
+        for (unsigned int i = 0; i < n_particles(); ++i) {
+            //Particle &pi = particles[i];
+
+            particles.v_smoothed[i] = glm::vec4(0.0);
+            Scalarf8 w_avx(0.0f);
+            Scalarf8 zero(0.0f);
+            Scalarf8 deltaT(0.0f);
+            Scalarf8 p1_avx(0.0f);
+            Scalarf8 p3_avx(0.0f);
+            Scalarf8 FF(4.0);
+            particles.dt[i]=0.0;
+            const Scalarf8 mi_avx(m);
+            const Scalarf8 pi_avx(particles.p[i]);
+            const Scalarf8 pi_rho_avx(particles.rho[i]);
+            const Scalarf8 density_i_avx(particles.rho_squared[i]);
+            const Scalarf8 Ti_avx(particles.T[i]);
+            Vector3f8 delta_ai(particles.a[i]);
+            const Vector3f8 xi_avx(particles.x[i]);
+            const Vector3f8 vi_avx(particles.v[i]);
+            Vector3f8 vi_smoothed_avx(particles.v_smoothed[i]);
+            int nn = m_neighborhoodSearch->point_set(0).n_neighbors(0,i);//neighbors[i].size();
+
+            for(int j=0;j<nn;j+=8)
+            {
+
+                const uint count = std::min(nn - j, 8);
+                const Vector3f8 xj_avx = convertVec_zero(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.x[0], count);
+                const Vector3f8 vj_avx = convertVec_zero(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.v[0], count);
+                const Scalarf8 pj_avx = convert_one(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.p[0], count);
+                const Scalarf8 density_j_avx = convert_one(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.rho_squared[0], count);
+                const Vector3f8 delta_x = xi_avx-xj_avx;
+                const Vector3f8 PKernelGValue = pkernelAvx.gradient(delta_x);//(pkernel.gradient(data));
+                const Vector3f8 VKernelGValue =vkernelAvx.gradient(delta_x);// (vkernel.gradient(data));
+                delta_ai-=PKernelGValue*mi_avx*(pi_avx/(density_i_avx) + pj_avx/(density_j_avx));
+
+                const Vector3f8 delta_v =vi_avx-vj_avx;
+                const Scalarf8 Tj_avx = convert_one(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.T[0], count);
+
+                const Scalarf8 pj_rho_avx = convert_one(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.rho[0], count);
+                // viscosity
+                //pi.a += params.nu * (pj.v - particles.v[i]) * m/(pi.rho*pj.rho) * vkernel.second_derivative(neighbors[i][j].d, neighbors[i][j].d_squared);
+                //particles.a[i]+=0.125*const_Viscosity.reduce()/(particles.rho[k]) *(((particles.x[i]-particles.x[k])*vkernel.gradient(data))/(data.d_squared+h_squared.reduce()))*(particles.v[i] - particles.v[k]);
+                delta_ai+=(delta_v)*((const_Viscosity/(pj_rho_avx))*(delta_x*VKernelGValue)/(delta_x.squaredNorm()+h_squared));
+                // artificial viscosity
+                //(teste viscosidade artificial)
+                //pi.a-=((m/(pi.rho))*P_ij(pi,pj,data)*vkernel.gradient(data));
+                //delta_ai-=VKernelGValue*((mi_avx/pi_rho_avx)*P_ij(delta_x,delta_v,pi_rho_avx,pj_rho_avx));
+
+                const Scalarf8 wj_avx = (mi_avx/pj_rho_avx)* pkernelAvx.value(delta_x.norm());
+
+                w_avx += wj_avx;
+                vi_smoothed_avx += vj_avx*wj_avx;
+                //Real wj = m/particles.rho[k] * pkernel.value(data.d, data.d_squared);
+                //particles.v_smoothed[i] += particles.v[data.idx] * wj;
+                //update temperature gradient;
+
+                //pi.dt += (m/pj.rho)*(pi.T-pj.T)*pkernel.second_derivative(neighbors[i][j].d, neighbors[i][j].d_squared);
+                p1_avx=((mi_avx/pj_rho_avx)*(FF*pi_rho_avx/(pi_rho_avx+pj_rho_avx)));
+                deltaT = (Ti_avx-Tj_avx);
+                p3_avx = (((delta_x)*PKernelGValue)/(delta_x.squaredNorm()+ h_squared));
+                Real ddt = (p1_avx*deltaT*p3_avx).reduce();
+                particles.dt[i]+=ddt;
+
+            }
+            particles.a[i].x=delta_ai.x().reduce();
+            particles.a[i].y=delta_ai.y().reduce();
+            //particles.a[i].z=delta_ai.z().reduce();
+            //std::cout <<  particles.a[i] << std::endl;
+
+            Real ww = w_avx.reduce();
+            // normalize velocity estimate
+            if(ww>0.0000001 )
+            {
+                particles.v_smoothed[i].x=vi_smoothed_avx.x().reduce();
+                particles.v_smoothed[i].y=vi_smoothed_avx.y().reduce();
+                particles.v_smoothed[i].z=vi_smoothed_avx.z().reduce();
+                particles.v_smoothed[i] /= ww;
+            }
+
+            // gravity
+            particles.a[i] += params.gravity;
+            if(steps<8)
+                particles.a[i]+=glm::vec4(100.0,-50.0,0.0,0.0);
+
+            if(pforce)
+                particles.a[i]+=glm::vec4(12.5*pow(sin(((2.0f*M_PI)*0.125f)*time+particles.x[i][0]/25.0),5.0),0.0,0.0,0.0);
+        }
+
+        NormMaxV=-100000.0;NormMinV=10000.0;
+
+        std::chrono::duration<double> diff= std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now()-t0);
+        tforce +=diff;
+
+        auto t1 = std::chrono::high_resolution_clock::now();
+        // third pass: apply artificial viscosity, integrate, clear transient fields
+#pragma omp parallel default(shared)
+        {
+#pragma omp for schedule(static)
+            for (int i = 0; i < n_particles(); ++i) {
+                //Particle &pi = particles[i];
+
+                // integrate
+                std::array<float, 3> ox = particles.x[i], dx;
+                if (params.real_xsph) {
+                    particles.v[i][0] += params.dt * particles.a[i][0];
+                    particles.v[i][1] += params.dt * particles.a[i][1];
+                    particles.v[i][2] = 0.0;
+                    //particles.v[i]_smoothed += params.dt * pi.a;
+                    particles.v[i][0]=(1-params.xi) * particles.v[i][0] + params.xi * particles.v_smoothed[i][0];
+                    particles.v[i][1]=(1-params.xi) * particles.v[i][1] + params.xi * particles.v_smoothed[i][1];
+                    particles.v[i][2] = 0.0;
+                    dx[0] = params.dt * ((1-params.xi) * particles.v[i][0] + params.xi * particles.v_smoothed[i][0]);
+                    dx[1] = params.dt * ((1-params.xi) * particles.v[i][1] + params.xi * particles.v_smoothed[i][1]);
+                } else {
+                    particles.v[i][0] = (1-params.xi) * particles.v[i][0] + params.xi * particles.v_smoothed[i][0];
+                    particles.v[i][1] = (1-params.xi) * particles.v[i][1] + params.xi * particles.v_smoothed[i][1];
+                    particles.v[i][0] += params.dt * particles.a[i][0];
+                    particles.v[i][1] += params.dt * particles.a[i][1];
+                    particles.v[i][2] = 0.0;
+                    dx[0] = params.dt * particles.v[i][0];
+                    dx[1] = params.dt * particles.v[i][1];
+                }
+                particles.T[i]+= params.dt*particles.dt[i]*0.001;
+                if(particles.T[i]>Tmax)
+                    Tmax = particles.T[i];
+                if(particles.T[i]<Tmin)
+                    Tmin = particles.T[i];
+
+                particles.C[i][0]+= 0.001;
+                particles.C[i][1]+= 0.001;
+                particles.C[i][2]+= 0.001;
+                //particles.C[i][3]+= 0.001;
+
+                //particles.dt[i]*=params.alpha;
+
+                bool tc= testAllCollision(i,h*0.17,dx);
+                if(tc==false)
+                {
+
+                    //particles.x[i][0] += dx[0];
+                    //particles.x[i][1] += dx[1];
+                    //particles.x[i][2] = 0.0;
+                }
+
+
+
+
+                // clear forces
+                particles.a[i] = glm::vec4(0.0);
+
+                float tmpNormV=glm::l2Norm(glm::vec3(particles.v[i][0],particles.v[i][1],particles.v[i][2]));
+                if(tmpNormV>NormMaxV)
+                {
+                    NormMaxV = tmpNormV;
+                    NormMaxVid = i;
+                }
+                if(tmpNormV<NormMinV)
+                    NormMinV = tmpNormV;
+                if(NormMaxV>Vmax)
+                    Vmax = NormMaxV;
+
+                // enforce boundaries (reflect at boundary, with restitution a)
+                // 2D only!
+                /*if (particles.x[i][0] > 2.7) {
+                    float penetration = (particles.x[i][0] - 2.7);
+                    particles.x[i][0] = (2.7 - params.a * penetration - 0.001*rand01());
+                    particles.x[i][1] = ox[1] + (1 + (params.a-1) * penetration/fabs(dx[0])) * params.dt * particles.v[i][1];
+
+                    particles.v[i][0] *= -params.a;
+                    particles.v[i][1] *= params.a;
+                } else if (particles.x[i][0] < -0.7) {
+                    float penetration = -particles.x[i][0]-0.7;
+                    particles.x[i][0] = -0.7+params.a * penetration + 0.001*rand01();
+                    particles.x[i][1] = ox[1] + (1 + (params.a-1) * penetration/fabs(dx[0])) * params.dt * particles.v[i][1];
+
+                    particles.v[i][0] *= -params.a;
+                    particles.v[i][1] *= params.a;
+                }
+
+                if (particles.x[i][1] < 0.05) {
+                    float penetration = 0.05-particles.x[i][1];
+                    particles.x[i][0] = ox[0] + (1 + (params.a-1) * penetration/fabs(dx[1])) * params.dt * particles.v[i][0];
+                    particles.x[i][1] = 0.05+params.a * penetration + 0.001*rand01();
+
+                    particles.v[i][0] *= params.a;
+                    particles.v[i][1] *= -params.a;
+                }*/
+
+            }
+            time+= params.dt;
+        }
+
+
+        std::chrono::duration<double> diff1= std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now()-t1);
+        tcollision +=diff1;
+        //std:: cout << "Tmin = " << Tmin << " Tmax = " << Tmax << std::endl;
+        n_step++;
+        steps++;
+        if(n_step % 500 == 0)
+        {
+            m_neighborhoodSearch->z_sort();
+            for (auto j = 0u; j < m_neighborhoodSearch->n_point_sets(); ++j)
+            {
+                auto const& d = m_neighborhoodSearch->point_set(j);
+                d.sort_field(particles.x.data());
+                d.sort_field(particles.v.data());
+                d.sort_field(particles.C.data());
+            }
+
+        }
+    } //Fim stepThermal
   
   inline bool testAllCollision(int pId,float r,std::array<float, 3> ndx)
   {
