@@ -2340,11 +2340,11 @@ void renderGUI()
             float my_tex_h = 20;
 
             ImGui::SameLine(350);
-            ImGui::Text("Min = %.2f", sph.NormMinV); ImGui::SameLine(600); ImGui::Text("Max = %.2f", sph.NormMaxV);
+            ImGui::Text("Min = %.2f", sph.Tmin); ImGui::SameLine(600); ImGui::Text("Max = %.2f", sph.Tmax);
             ImVec2 pos = ImGui::GetCursorScreenPos();
             ImGui::Text("");
             ImGui::SameLine(280);
-            ImGui::TextColored(ImVec4(0.0f, 0.8f, 1.0f, 1.0f), "Vel (Norm)");
+            ImGui::TextColored(ImVec4(0.0f, 0.8f, 1.0f, 1.0f), "Temperatura (Celsius)");
             ImGui::GetWindowDrawList()->AddRectFilled(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,255,55));
             ImGui::SameLine(400);
             if(rendermode==0)
@@ -2362,10 +2362,11 @@ void renderGUI()
             ImVec2 pos = ImGui::GetCursorScreenPos();
             ImGui::Text("");
             ImGui::SameLine(280);
-            ImGui::TextColored(ImVec4(0.0f, 0.8f, 1.0f, 1.0f), "Vel (Norm)");
+            ImGui::TextColored(ImVec4(0.0f, 0.8f, 1.0f, 1.0f), "Temperatura (Celsius)");
             ImGui::GetWindowDrawList()->AddRectFilled(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,255,55));
             ImGui::SameLine(400);
-            ImGui::GetWindowDrawList()->AddRectFilledMultiColor(ImVec2(ImGui::GetItemRectMax().x+50,ImGui::GetItemRectMin().y), ImVec2(ImGui::GetItemRectMax().x+302,ImGui::GetItemRectMax().y+9),IM_COL32(55,255,255,255),IM_COL32(0,10,255,255),IM_COL32(0,10,255,255),IM_COL32(55,(int)(0.8*255),255,255));
+            //ImGui::GetWindowDrawList()->AddRectFilledMultiColor(ImVec2(ImGui::GetItemRectMax().x+50,ImGui::GetItemRectMin().y), ImVec2(ImGui::GetItemRectMax().x+302,ImGui::GetItemRectMax().y+9),IM_COL32(55,255,255,255),IM_COL32(0,10,255,255),IM_COL32(0,10,255,255),IM_COL32(55,(int)(0.8*255),255,255));
+            ImGui::GetWindowDrawList()->AddRectFilledMultiColor(ImVec2(ImGui::GetItemRectMax().x+50,ImGui::GetItemRectMin().y), ImVec2(ImGui::GetItemRectMax().x+302,ImGui::GetItemRectMax().y+9),IM_COL32(0,0,128,255),IM_COL32(255,0,0,255),IM_COL32(255,0,0,255),IM_COL32(0,0,128,255));
             ImGui::GetWindowDrawList()->AddRect(ImVec2(ImGui::GetItemRectMax().x+50,ImGui::GetItemRectMin().y), ImVec2(ImGui::GetItemRectMax().x+302,ImGui::GetItemRectMax().y+9),IM_COL32(155,155,155,255));
         }
 

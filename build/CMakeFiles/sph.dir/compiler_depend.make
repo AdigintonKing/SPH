@@ -2343,6 +2343,7 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
   /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/std_function.h \
+  /usr/include/c++/13/bits/std_mutex.h \
   /usr/include/c++/13/bits/std_thread.h \
   /usr/include/c++/13/bits/stl_algo.h \
   /usr/include/c++/13/bits/stl_algobase.h \
@@ -2373,6 +2374,7 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
   /usr/include/c++/13/bits/stringfwd.h \
   /usr/include/c++/13/bits/this_thread_sleep.h \
   /usr/include/c++/13/bits/uniform_int_dist.h \
+  /usr/include/c++/13/bits/unique_lock.h \
   /usr/include/c++/13/bits/unique_ptr.h \
   /usr/include/c++/13/bits/unordered_map.h \
   /usr/include/c++/13/bits/unordered_set.h \
@@ -2389,6 +2391,7 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
   /usr/include/c++/13/clocale \
   /usr/include/c++/13/cmath \
   /usr/include/c++/13/compare \
+  /usr/include/c++/13/complex \
   /usr/include/c++/13/cstdarg \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdint \
@@ -2424,6 +2427,7 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
   /usr/include/c++/13/map \
   /usr/include/c++/13/math.h \
   /usr/include/c++/13/memory \
+  /usr/include/c++/13/mutex \
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/parallel/algo.h \
@@ -2879,8 +2883,63 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
   /usr/local/include/ImageMagick-7/MagickWand/pixel-wand.h \
   /usr/local/include/ImageMagick-7/MagickWand/stream.h \
   /usr/local/include/ImageMagick-7/MagickWand/wand-view.h \
-  /usr/local/include/ImageMagick-7/MagickWand/wandcli.h
+  /usr/local/include/ImageMagick-7/MagickWand/wandcli.h \
+  /usr/local/include/opencv4/opencv2/core.hpp \
+  /usr/local/include/opencv4/opencv2/core/base.hpp \
+  /usr/local/include/opencv4/opencv2/core/bufferpool.hpp \
+  /usr/local/include/opencv4/opencv2/core/check.hpp \
+  /usr/local/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /usr/local/include/opencv4/opencv2/core/cvdef.h \
+  /usr/local/include/opencv4/opencv2/core/cvstd.hpp \
+  /usr/local/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /usr/local/include/opencv4/opencv2/core/fast_math.hpp \
+  /usr/local/include/opencv4/opencv2/core/hal/interface.h \
+  /usr/local/include/opencv4/opencv2/core/mat.hpp \
+  /usr/local/include/opencv4/opencv2/core/mat.inl.hpp \
+  /usr/local/include/opencv4/opencv2/core/matx.hpp \
+  /usr/local/include/opencv4/opencv2/core/neon_utils.hpp \
+  /usr/local/include/opencv4/opencv2/core/operations.hpp \
+  /usr/local/include/opencv4/opencv2/core/optim.hpp \
+  /usr/local/include/opencv4/opencv2/core/ovx.hpp \
+  /usr/local/include/opencv4/opencv2/core/persistence.hpp \
+  /usr/local/include/opencv4/opencv2/core/saturate.hpp \
+  /usr/local/include/opencv4/opencv2/core/traits.hpp \
+  /usr/local/include/opencv4/opencv2/core/types.hpp \
+  /usr/local/include/opencv4/opencv2/core/utility.hpp \
+  /usr/local/include/opencv4/opencv2/core/version.hpp \
+  /usr/local/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /usr/local/include/opencv4/opencv2/highgui.hpp \
+  /usr/local/include/opencv4/opencv2/imgcodecs.hpp \
+  /usr/local/include/opencv4/opencv2/imgproc.hpp \
+  /usr/local/include/opencv4/opencv2/imgproc/segmentation.hpp \
+  /usr/local/include/opencv4/opencv2/opencv_modules.hpp \
+  /usr/local/include/opencv4/opencv2/videoio.hpp
 
+
+/usr/local/include/opencv4/opencv2/imgproc/segmentation.hpp:
+
+/usr/local/include/opencv4/opencv2/imgproc.hpp:
+
+/usr/local/include/opencv4/opencv2/core/traits.hpp:
+
+/usr/local/include/opencv4/opencv2/core/persistence.hpp:
+
+/usr/local/include/opencv4/opencv2/core/ovx.hpp:
+
+/usr/local/include/opencv4/opencv2/core/neon_utils.hpp:
+
+/usr/local/include/opencv4/opencv2/core/mat.inl.hpp:
+
+/usr/local/include/opencv4/opencv2/core/hal/interface.h:
+
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:
+
+/usr/local/include/opencv4/opencv2/core/cvstd.hpp:
+
+/usr/local/include/opencv4/opencv2/core/check.hpp:
+
+/usr/local/include/opencv4/opencv2/core.hpp:
 
 /usr/local/include/ImageMagick-7/MagickWand/wandcli.h:
 
@@ -2897,6 +2956,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 /usr/local/include/ImageMagick-7/MagickWand/display.h:
 
 /usr/local/include/ImageMagick-7/MagickWand/deprecate.h:
+
+/usr/local/include/opencv4/opencv2/core/cv_cpu_dispatch.h:
 
 /usr/local/include/ImageMagick-7/MagickWand/conjure.h:
 
@@ -2921,6 +2982,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 /usr/local/include/ImageMagick-7/MagickCore/resample.h:
 
 /usr/local/include/ImageMagick-7/MagickCore/registry.h:
+
+/usr/local/include/opencv4/opencv2/videoio.hpp:
 
 /usr/local/include/ImageMagick-7/MagickCore/random_.h:
 
@@ -3038,6 +3101,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/sgxintrin.h:
 
+/usr/local/include/opencv4/opencv2/core/optim.hpp:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/serializeintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/raointintrin.h:
@@ -3103,6 +3168,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512bitalgintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx5124vnniwintrin.h:
+
+/usr/local/include/opencv4/opencv2/core/bufferpool.hpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx5124fmapsintrin.h:
 
@@ -3208,6 +3275,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 
 /usr/include/c++/13/parallel/algo.h:
 
+/usr/include/c++/13/mutex:
+
 /usr/include/c++/13/memory:
 
 /usr/include/c++/13/list:
@@ -3216,9 +3285,13 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 
 /usr/include/c++/13/functional:
 
+/usr/local/include/opencv4/opencv2/core/matx.hpp:
+
 /usr/include/c++/13/ext/concurrence.h:
 
 /usr/include/c++/13/ctime:
+
+/usr/include/c++/13/complex:
 
 /usr/include/c++/13/compare:
 
@@ -3237,6 +3310,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 /usr/include/c++/13/bits/stl_tempbuf.h:
 
 /usr/include/c++/13/bits/stl_raw_storage_iter.h:
+
+/usr/local/include/opencv4/opencv2/core/operations.hpp:
 
 /usr/include/c++/13/bits/stl_queue.h:
 
@@ -3312,6 +3387,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 
 /usr/include/boost/predef/platform/windows_desktop.h:
 
+/usr/local/include/opencv4/opencv2/core/fast_math.hpp:
+
 /usr/include/boost/predef/platform/mingw64.h:
 
 /usr/include/boost/predef/platform/mingw.h:
@@ -3331,6 +3408,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 /usr/include/c++/13/vector:
 
 /usr/include/boost/predef/os/vms.h:
+
+/usr/local/include/opencv4/opencv2/core/base.hpp:
 
 /usr/include/boost/predef/os/os400.h:
 
@@ -3610,9 +3689,13 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 
 /usr/include/c++/13/bits/memory_resource.h:
 
+/usr/local/include/opencv4/opencv2/core/types.hpp:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/xsavecintrin.h:
 
 /usr/include/c++/13/streambuf:
+
+/usr/include/c++/13/bits/unique_lock.h:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/ext/matrix_float3x4.hpp:
 
@@ -3644,6 +3727,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 
 /usr/include/c++/13/bits/cxxabi_forced.h:
 
+/usr/local/include/opencv4/opencv2/core/utility.hpp:
+
 /usr/include/c++/13/unordered_map:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/ext/vector_float2.hpp:
@@ -3673,6 +3758,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 /usr/local/include/ImageMagick-7/MagickWand/montage.h:
 
 /home/adiginton/Documents/SPH_heat/includes/lgl/Types.h:
+
+/usr/local/include/opencv4/opencv2/core/cvdef.h:
 
 /home/adiginton/Documents/SPH_heat/includes/lgl/Bits.h:
 
@@ -3724,6 +3811,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 
 /home/adiginton/Documents/SPH_heat/includes/imgui/imstb_rectpack.h:
 
+/usr/local/include/opencv4/opencv2/opencv_modules.hpp:
+
 /home/adiginton/Documents/SPH_heat/includes/glm/ext/vector_bool1_precision.hpp:
 
 /usr/include/c++/13/bits/postypes.h:
@@ -3741,6 +3830,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlbwintrin.h:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/gtc/type_precision.hpp:
+
+/usr/local/include/opencv4/opencv2/core/mat.hpp:
 
 /usr/include/boost/predef/platform/mingw32.h:
 
@@ -3849,6 +3940,8 @@ CMakeFiles/sph.dir/main.cpp.o: /home/adiginton/Documents/SPH_heat/main.cpp \
 /usr/include/boost/predef/compiler/mpw.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/local/include/opencv4/opencv2/core/cvstd.inl.hpp:
 
 extern/install/NeighborhoodSearch/include/Config.h:
 
@@ -4140,6 +4233,8 @@ configuration/root_directory.h:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/gtc/epsilon.hpp:
 
+/usr/local/include/opencv4/opencv2/imgcodecs.hpp:
+
 /usr/include/c++/13/debug/assertions.h:
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
@@ -4303,6 +4398,8 @@ extern/install/NeighborhoodSearch/include/DataStructures.h:
 /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h:
 
 /usr/include/c++/13/tr1/modified_bessel_func.tcc:
+
+/usr/local/include/opencv4/opencv2/highgui.hpp:
 
 /home/adiginton/Documents/SPH_heat/lgl/Error.cpp:
 
@@ -4504,6 +4601,8 @@ extern/install/NeighborhoodSearch/include/DataStructures.h:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/mat2x3.hpp:
 
+/usr/local/include/opencv4/opencv2/core/saturate.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:
@@ -4527,6 +4626,8 @@ extern/install/NeighborhoodSearch/include/DataStructures.h:
 /home/adiginton/Documents/SPH_heat/includes/glm/gtx/string_cast.inl:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/ext/matrix_float2x3_precision.hpp:
+
+/usr/include/c++/13/bits/std_mutex.h:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/ext/matrix_float2x4.hpp:
 
@@ -4582,6 +4683,8 @@ extern/install/NeighborhoodSearch/include/DataStructures.h:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/detail/_fixes.hpp:
 
+/usr/local/include/opencv4/opencv2/core/vsx_utils.hpp:
+
 /home/adiginton/Documents/SPH_heat/includes/glm/mat4x3.hpp:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/detail/func_common.inl:
@@ -4625,6 +4728,8 @@ extern/install/NeighborhoodSearch/include/DataStructures.h:
 /home/adiginton/Documents/SPH_heat/includes/glm/mat3x3.hpp:
 
 /home/adiginton/Documents/SPH_heat/includes/glm/mat4x4.hpp:
+
+/usr/local/include/opencv4/opencv2/core/version.hpp:
 
 /usr/include/CGAL/Timer.h:
 

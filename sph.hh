@@ -59,6 +59,12 @@ using namespace cimg_library;
 //#include <filesystem>
 //#include <array>
 
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui.hpp>
+using namespace cv;
+
 #include <iostream>
 
 
@@ -177,6 +183,8 @@ public:
   std::vector<float> dt;
   // HSV h value
   std::vector<float> colorh;
+  std::vector<float> colors;
+  std::vector<float> colorv;
   std::vector<std::array<float, 4>> C;
 
   std::unique_ptr<bool[]>  m_alive;
@@ -507,6 +515,7 @@ std::vector<unsigned int> polygonIndex;
 typedef spiky_kernel_avx pressure_kernel_avx;
 typedef std_kernel_avx viscosity_kernel_avx;
   float Tmax,Tmin;
+  float Huemax, Huemin;
   Particles particles;
   pressure_kernel pkernel;
   viscosity_kernel vkernel;
@@ -571,10 +580,31 @@ screenFilename = "screenVis";
       compute_mass();
   }
   
-  float RGBtoCelsius(glm::vec4 Color){
+  float RGBtoCelsius(glm::vec4 Color, float hue){
 
       float temperatura;
-      temperatura = (0.299 * 255 * Color [0]) + (0.587 * 255 * Color[1]) + (0.114 * 255 * Color[2]);
+      float tminima = 21.9;
+      float tmaxima = 26.0;
+      float hueNorm;
+
+      float huedif = Huemax - Huemin;
+      float tdif = tmaxima - tminima;
+
+      hueNorm = (hue * huedif) + Huemin;
+      temperatura = tmaxima - (hueNorm * tdif) ;
+
+      //cv::Scalar pixel_value(Color[2]* 255, Color[1]* 255, Color[0]* 255, Color[3]* 255);
+      //cv::Mat img_color(1, 1, CV_8UC4, pixel_value);
+
+      //cv::Mat greyMat;
+      //cv::cvtColor(img_color, greyMat, COLOR_BGRA2GRAY);
+
+      //float grey;
+      //grey = (greyMat.at<cv::Vec4b>(0,0));
+
+      //std::cout << "Single pixel value (BGRA): " << greyMat.at<cv::Vec4b>(0, 0) << std::endl;
+
+      //temperatura = (0.299 * 255 * Color [0]) + (0.587 * 255 * Color[1]) + (0.114 * 255 * Color[2]);
 
       /*
       if (Color [2] > Color [0] and Color [2] > Color [1]){
@@ -589,24 +619,131 @@ screenFilename = "screenVis";
       }
     */
 
-      temperatura = temperatura * 257;
-      temperatura = (temperatura/100) - 273.15;
+      //temperatura = temperatura * 257;
+      //temperatura = (temperatura/100) - 273.15;
 
       return temperatura;
 }
 
- glm::vec4 CelsiustoRGB(float temperaturapx){
+  /*glm::vec4 CelsiustoRGB(float temperaturapx){
+
+      glm::vec4 RGBAT;
+      temperaturapx += 273.15;
+      temperaturapx = temperaturapx * 100;
+      temperaturapx = temperaturapx / 257;
+
+      float red;
+      float green;
+      float blue;
+
+      //temperatura = (0.299 * 255 * Color [0]) + (0.587 * 255 * Color[1]) + (0.114 * 255 * Color[2]);
+
+      return RGBAT;
+  }*/
+
+
+ glm::vec4 CelsiustoRGB(float temperaturapx, int i){
+
+     float tdif = Tmax - Tmin;
+     float temptemp = temperaturapx - Tmin;
+     float ratio = temptemp / tdif;
+
+     float huedif = Huemax - Huemin;
+     float novohue = Huemax - (huedif * ratio);
+
+     if (ratio <  0){
+         Huemax = novohue;
+     } else if(novohue < Huemin){
+         Huemin = novohue;
+     }
+
+     particles.colorh[i] = novohue;
+
+     int hueconta = static_cast<int>(novohue * 360);
+
+     /*
+     unsigned int width = 1;
+     unsigned int height = 1;
+
+     std::vector<unsigned char> image(width * height * 4);
+    */
 
      glm::vec4 RGBAT;
-     temperaturapx += 273.15;
-     temperaturapx = temperaturapx * 100;
-     temperaturapx = temperaturapx / 257;
+
+     float c = particles.colorv[i] * particles.colors[i]; // chroma
+     float x = c * (1 - std::abs(fmod(hueconta / 60.0, 2) - 1));
+     float m = particles.colorv[i] - c;
+
+     float r_prime, g_prime, b_prime;
+
+     if (hueconta>= 0 && hueconta < 60) {
+         r_prime = c;
+         g_prime = x;
+         b_prime = 0;
+     } else if (hueconta >= 60 && hueconta < 120) {
+         r_prime = x;
+         g_prime = c;
+         b_prime = 0;
+     } else if (hueconta >= 120 && hueconta < 180) {
+         r_prime = 0;
+         g_prime = c;
+         b_prime = x;
+     } else if (hueconta >= 180 && hueconta < 240) {
+         r_prime = 0;
+         g_prime = x;
+         b_prime = c;
+     } else if (hueconta >= 240 && hueconta < 300) {
+         r_prime = x;
+         g_prime = 0;
+         b_prime = c;
+     } else {
+         r_prime = c;
+         g_prime = 0;
+         b_prime = x;
+     }
 
      float red;
      float green;
      float blue;
+     float alpha;
 
-      //temperatura = (0.299 * 255 * Color [0]) + (0.587 * 255 * Color[1]) + (0.114 * 255 * Color[2]);
+     red = r_prime + m;
+     green = g_prime + m;
+     blue = b_prime + m;
+     alpha = 1.0;
+
+     /*temperaturapx += 273.15;
+     temperaturapx = temperaturapx * 100;
+     temperaturapx = temperaturapx / 257;
+
+     cv::Mat grayPx(1, 1, CV_8UC1, cv::Scalar(temperaturapx));*/
+
+    /* uchar pixelValue = grayPx.at<uchar>(0, 0);
+    std::cout << "Pixel value: " << static_cast<int>(pixelValue) << std::endl;*/
+
+    //temperatura = (0.299 * 255 * Color [0]) + (0.587 * 255 * Color[1]) + (0.114 * 255 * Color[2]);
+     /*Mat img_color;
+     applyColorMap(grayPx, img_color, COLORMAP_JET);
+
+     Mat new_img;
+
+     cv::cvtColor(img_color, new_img, COLOR_BGR2RGBA, 4);*/
+
+
+
+     /*red = (new_img.at<cv::Vec4b>(0, 0)[0]) / 255.0;
+     green = (new_img.at<cv::Vec4b>(0, 0)[1]) / 255.0;
+     blue = (new_img.at<cv::Vec4b>(0, 0)[2]) / 255.0;
+     alpha = (new_img.at<cv::Vec4b>(0, 0)[3]) / 255.0;*/
+
+     //std::cout << "Pixel value: R " << red << " G " << green << " B " << blue << " Alpha" << alpha <<  std::endl;
+
+     RGBAT[0] = red;
+     RGBAT[1] = green;
+     RGBAT[2] = blue;
+     RGBAT[3] = alpha;
+
+     //Point4_<uchar>* p = img_color.ptr<Point4_<uchar> >(0,0);
 
       return RGBAT;
   }
@@ -846,6 +983,8 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     particles.dt.resize(pos.size());
     particles.C.resize(pos.size());
     particles.colorh.resize(pos.size());
+    particles.colors.resize(pos.size());
+    particles.colorv.resize(pos.size());
 
     for (int i = 0; i < pos.size(); i++) {
         particles.x[i][0] =pos[i].x; particles.x[i][1] =pos[i].y; particles.x[i][2] =pos[i].z;// glm::vec4(pos[i].x,pos[i].y,pos[i].z,1.0);
@@ -856,25 +995,23 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         particles.C[i][2]= Vcolor[i][2];
         particles.C[i][3]= Vcolor[i][3];
 
-        glm::vec4 coresTemporarias;
-        coresTemporarias[0] = particles.C[i][0];
-        coresTemporarias[1] = particles.C[i][1];
-        coresTemporarias[2] = particles.C[i][2];
-        coresTemporarias[3] = particles.C[i][3];
-
-        particles.T[i] = RGBtoCelsius(coresTemporarias);
-
-        std::cout << "("<< " R " << coresTemporarias[0]
-                  << " G " << coresTemporarias [1]
-                  << " B " << coresTemporarias[2]<< "-" << particles.T[i] << ")" << std::endl;
-
-        /*float r = particles.C[i][0];
+        float r = particles.C[i][0];
         float g = particles.C[i][1];
         float b = particles.C[i][2];
 
         float max = std::max({r, g, b});
         float min = std::min({r, g, b});
         float delta = max - min;
+
+        //std::cout << "Valor de max = (" << max << ") " << particles.colorv[i] << std::endl;
+
+        particles.colorv[i] = max;
+
+        if (max == 0) {
+            particles.colors[i] = 0;
+        } else {
+            particles.colors[i] = delta / max;
+        }
 
         if (delta == 0) {
             particles.colorh[i] = 0;
@@ -891,7 +1028,51 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
             }
         }
 
-        particles.colorh[i] = particles.colorh[i] / 360;*/
+        particles.colorh[i] = particles.colorh[i] / 360;
+
+
+        if (particles.colorh[i] > Huemax){
+            Huemax = particles.colorh[i];
+        }else if (particles.colorh[i] < Huemin){
+            Huemin = particles.colorh[i];
+        }
+    }
+
+    Tmin = 100.0;
+
+    for(int j = 0; j < pos.size(); j++){
+        glm::vec4 coresTemporarias;
+        coresTemporarias[0] = particles.C[j][0];
+        coresTemporarias[1] = particles.C[j][1];
+        coresTemporarias[2] = particles.C[j][2];
+        coresTemporarias[3] = particles.C[j][3];
+
+        particles.T[j] = RGBtoCelsius(coresTemporarias, particles.colorh[j]);
+
+        //Tmax=26.0;Tmin=21.9;
+
+        if (particles.T[j] > Tmax){
+            Tmax = particles.T[j];
+        }if (particles.T[j] < Tmin){
+            Tmin = particles.T[j];
+        }
+
+        //Teste Celsius
+        glm::vec4 testeCelsius;
+        testeCelsius = CelsiustoRGB(particles.T[j], j);
+
+        particles.C[j][0]= testeCelsius[0];
+        particles.C[j][1]= testeCelsius[1];
+        particles.C[j][2]= testeCelsius[2];
+        particles.C[j][3]= testeCelsius[3];
+
+        std::cout << "("<< " R " << coresTemporarias[0]
+                  << " G " << coresTemporarias [1]
+                  << " B " << coresTemporarias[2]
+                  << "Temperatura " << particles.T[j]
+                  << " R2 " << testeCelsius[0]
+                  << " G2 " << testeCelsius [1]
+                  << " B2 " << testeCelsius[2]<< ")" << std::endl;
     }
 
     int q = smoothing_radius(this->spacing * params.rel_smoothing_radius);
@@ -902,7 +1083,6 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     //updateSearcher(grid);
 
     //Temperaturas máximas e mínimas de acordo com as temperaturas da imagem
-    Tmax=26.0;Tmin=21.9;
 
     /*
     for (int i = 0; i < n_particles(); ++i) {
@@ -1369,10 +1549,7 @@ void stepThermal() {
         updateSearcher();
         //updateSearcher(grid);
 
-
-
         //float p1,p2,p3;
-
 
         auto t0 = std::chrono::high_resolution_clock::now();
 // second pass: compute accelerations and smoothed velocity, add gravity
@@ -1410,7 +1587,7 @@ void stepThermal() {
                 const Vector3f8 delta_x = xi_avx-xj_avx;
                 const Vector3f8 PKernelGValue = pkernelAvx.gradient(delta_x);//(pkernel.gradient(data));
                 const Vector3f8 VKernelGValue =vkernelAvx.gradient(delta_x);// (vkernel.gradient(data));
-                delta_ai-=PKernelGValue*mi_avx*(pi_avx/(density_i_avx) + pj_avx/(density_j_avx));
+                //delta_ai-=PKernelGValue*mi_avx*(pi_avx/(density_i_avx) + pj_avx/(density_j_avx));
 
                 const Vector3f8 delta_v =vi_avx-vj_avx;
                 const Scalarf8 Tj_avx = convert_one(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.T[0], count);
@@ -1419,7 +1596,7 @@ void stepThermal() {
                 // viscosity
                 //pi.a += params.nu * (pj.v - particles.v[i]) * m/(pi.rho*pj.rho) * vkernel.second_derivative(neighbors[i][j].d, neighbors[i][j].d_squared);
                 //particles.a[i]+=0.125*const_Viscosity.reduce()/(particles.rho[k]) *(((particles.x[i]-particles.x[k])*vkernel.gradient(data))/(data.d_squared+h_squared.reduce()))*(particles.v[i] - particles.v[k]);
-                delta_ai+=(delta_v)*((const_Viscosity/(pj_rho_avx))*(delta_x*VKernelGValue)/(delta_x.squaredNorm()+h_squared));
+                //delta_ai+=(delta_v)*((const_Viscosity/(pj_rho_avx))*(delta_x*VKernelGValue)/(delta_x.squaredNorm()+h_squared));
                 // artificial viscosity
                 //(teste viscosidade artificial)
                 //pi.a-=((m/(pi.rho))*P_ij(pi,pj,data)*vkernel.gradient(data));
@@ -1427,8 +1604,8 @@ void stepThermal() {
 
                 const Scalarf8 wj_avx = (mi_avx/pj_rho_avx)* pkernelAvx.value(delta_x.norm());
 
-                w_avx += wj_avx;
-                vi_smoothed_avx += vj_avx*wj_avx;
+                //w_avx += wj_avx;
+                //vi_smoothed_avx += vj_avx*wj_avx;
                 //Real wj = m/particles.rho[k] * pkernel.value(data.d, data.d_squared);
                 //particles.v_smoothed[i] += particles.v[data.idx] * wj;
                 //update temperature gradient;
@@ -1439,6 +1616,13 @@ void stepThermal() {
                 p3_avx = (((delta_x)*PKernelGValue)/(delta_x.squaredNorm()+ h_squared));
                 Real ddt = (p1_avx*deltaT*p3_avx).reduce();
                 particles.dt[i]+=ddt;
+
+                /*float tempDiff = particles[j].temperature - particles[i].temperature;
+                float kernelVal = kernel(r, h);
+                float heatFlux = kappa * tempDiff * kernelVal;
+                deltaTemp[i] += heatFlux * dt / (particles[i].density * particles[i].mass);*/
+
+
 
             }
             particles.a[i].x=delta_ai.x().reduce();
@@ -1479,7 +1663,7 @@ void stepThermal() {
                 //Particle &pi = particles[i];
 
                 // integrate
-                std::array<float, 3> ox = particles.x[i], dx;
+                /*std::array<float, 3> ox = particles.x[i], dx;
                 if (params.real_xsph) {
                     particles.v[i][0] += params.dt * particles.a[i][0];
                     particles.v[i][1] += params.dt * particles.a[i][1];
@@ -1498,36 +1682,26 @@ void stepThermal() {
                     particles.v[i][2] = 0.0;
                     dx[0] = params.dt * particles.v[i][0];
                     dx[1] = params.dt * particles.v[i][1];
-                }
+                }*/
                 particles.T[i]+= params.dt*particles.dt[i]*0.001;
                 if(particles.T[i]>Tmax)
                     Tmax = particles.T[i];
                 if(particles.T[i]<Tmin)
                     Tmin = particles.T[i];
 
-                particles.C[i][0]+= 0.001;
-                particles.C[i][1]+= 0.001;
-                particles.C[i][2]+= 0.001;
-                //particles.C[i][3]+= 0.001;
+                glm::vec4 Colortmp = CelsiustoRGB(particles.T[i], i);
+
+                particles.C[i][0]+= Colortmp[0];
+                particles.C[i][1]+= Colortmp[1];
+                particles.C[i][2]+= Colortmp[2];
+                //particles.C[i][3]+= Colortmp[3];
 
                 //particles.dt[i]*=params.alpha;
 
-                bool tc= testAllCollision(i,h*0.17,dx);
-                if(tc==false)
-                {
-
-                    //particles.x[i][0] += dx[0];
-                    //particles.x[i][1] += dx[1];
-                    //particles.x[i][2] = 0.0;
-                }
-
-
-
-
                 // clear forces
-                particles.a[i] = glm::vec4(0.0);
+                //particles.a[i] = glm::vec4(0.0);
 
-                float tmpNormV=glm::l2Norm(glm::vec3(particles.v[i][0],particles.v[i][1],particles.v[i][2]));
+                /*float tmpNormV=glm::l2Norm(glm::vec3(particles.v[i][0],particles.v[i][1],particles.v[i][2]));
                 if(tmpNormV>NormMaxV)
                 {
                     NormMaxV = tmpNormV;
@@ -1536,7 +1710,7 @@ void stepThermal() {
                 if(tmpNormV<NormMinV)
                     NormMinV = tmpNormV;
                 if(NormMaxV>Vmax)
-                    Vmax = NormMaxV;
+                    Vmax = NormMaxV;*/
 
                 // enforce boundaries (reflect at boundary, with restitution a)
                 // 2D only!
