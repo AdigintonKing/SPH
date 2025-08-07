@@ -562,7 +562,7 @@ screenFilename = "screenVis";
     params.a = 0.7;
         
     // time step
-    params.dt = 0.01;
+    params.dt = 0.001;
     
     // surface extraction
     isovalue = 0.5;
@@ -603,14 +603,30 @@ screenFilename = "screenVis";
       return temperatura;
 }
 
+float CelsiustoHue(float temperaturapx){
+      float tdif;
+      tdif = Tmax - Tmin;
+
+      float temptemp = temperaturapx - Tmin;
+      float ratio = temptemp / tdif;
+
+      float huedif = Huemax - Huemin;
+      float novohue = Huemax - (huedif * ratio);
+
+      /*if (novohue > 0.8){
+          novohue = 0.0;
+      }*/
+
+      return novohue;
+}
 
  glm::vec4 CelsiustoRGB(float temperaturapx, int i, bool isinit){
 
 
      float tdif;
-     //if (isinit == 1){
+    //if (isinit == 1){
          tdif = 26.0 - 21.9;
-     //}else tdif = Tmax - Tmin;
+    //}else tdif = Tmax - Tmin;
 
      float temptemp = temperaturapx - Tmin;
      float ratio = temptemp / tdif;
@@ -618,16 +634,18 @@ screenFilename = "screenVis";
      float huedif = Huemax - Huemin;
      float novohue = Huemax - (huedif * ratio);
 
-     /*if (novohue > Huemax){
-         Huemax = novohue;
-     } else if(novohue < Huemin){
-         Huemin = novohue;
+     /*if(isinit != 1){
+         if (novohue > Huemax){
+             Huemax = novohue;
+         } else if(novohue < Huemin){
+             Huemin = novohue;
+         }
      }*/
 
-     /*if (novohue > 0.67){
-         novohue = 0.0;
+     /*if (novohue > 0.8){
+         novohue = 0.01;
      }*/
-     particles.colorh[i] = novohue;
+     //particles.colorh[i] = novohue;
 
      int hueconta = static_cast<int>(novohue * 360);
 
@@ -974,8 +992,11 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         }
 
         particles.colorh[i] = particles.colorh[i] / 360;
-        /*if (particles.colorh[i] >= 0.8){
+        /*if (particles.colorh[i] > 0.8){
             particles.colorh[i] = 0.0;
+            particles.C[i][0] = 1.0;
+            particles.C[i][1] = 0.0;
+            particles.C[i][2] = 0.0;
         }*/
 
 
@@ -992,7 +1013,7 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
               << " possize " << pos.size()
                      << std::endl;*/
 
-    Tmin = 21.9;
+    Tmin = 100.0;
 
     for(int j = 0; j < pos.size(); j++){
         glm::vec4 coresTemporarias;
@@ -1003,24 +1024,6 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
 
         particles.T[j] = RGBtoCelsius(coresTemporarias, particles.colorh[j]);
 
-        /*if (particles.T[j] > Tmax){
-            std::cout  << "Ponto cima: " << j
-                  << " -- H " << particles.colorh[j]
-                      << "("<< " R " << coresTemporarias[0]
-                      << " G " << coresTemporarias [1]
-                      << " B " << coresTemporarias[2]
-                  << "Temperatura " << particles.T[j]
-                  << std::endl;
-        }if (particles.T[j] < Tmin){
-            std::cout  << "Ponto baixo: " << j
-                      << " -- H " << particles.colorh[j]
-                      << "("<< " R " << coresTemporarias[0]
-                      << " G " << coresTemporarias [1]
-                      << " B " << coresTemporarias[2]
-                      << "Temperatura " << particles.T[j]
-                      << std::endl;
-        }*/
-
         //Teste Celsius
         //glm::vec4 testeCelsius;
         //testeCelsius = CelsiustoRGB(particles.T[j], j, 1);
@@ -1030,31 +1033,25 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         particles.C[j][2]= testeCelsius[2];
         particles.C[j][3]= testeCelsius[3];*/
 
-        //Tmax=26.0;Tmin=21.9;
+        Tmax=26.0;Tmin=21.9;
 
         if (particles.T[j] > Tmax){
-            /*std::cout  << "Ponto maximo: " << j
+            std::cout  << "Ponto maximo: " << j
                       << "("<< " R " << coresTemporarias[0]
                       << " G " << coresTemporarias [1]
                       << " B " << coresTemporarias[2]
-                      << " R2 " << testeCelsius[0]
-                      << " G2 " << testeCelsius [1]
-                      << " B2 " << testeCelsius[2]
                       << " -- H " << particles.colorh[j]
                       << "Temperatura " << particles.T[j]
-                      << std::endl;*/
+                      << std::endl;
             Tmax = particles.T[j];
         }if (particles.T[j] < Tmin){
-            /*std::cout  << "Ponto minimo: " << j
+            std::cout  << "Ponto minimo: " << j
                       << "("<< " --R " << coresTemporarias[0]
                       << " G " << coresTemporarias [1]
                       << " B " << coresTemporarias[2]
-                      << " R2 " << testeCelsius[0]
-                      << " G2 " << testeCelsius [1]
-                      << " B2 " << testeCelsius[2]
                       << " -- H " << particles.colorh[j]
                       << " -- Temperatura " << particles.T[j]
-                      << j << std::endl;*/
+                      << j << std::endl;
             Tmin = particles.T[j];
         }
 
@@ -1084,7 +1081,6 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         particles.C[l][2]= testeCelsius[2];
         particles.C[l][3]= testeCelsius[3];
     }
-
     int q = smoothing_radius(this->spacing * params.rel_smoothing_radius);
     // reserve memory for  and compute
     neighbors.resize(n_particles());
@@ -1584,34 +1580,25 @@ void stepThermal() {
                 const Vector3f8 PKernelGValue = pkernelAvx.gradient(delta_x);//(pkernel.gradient(data));
                 const Vector3f8 VKernelGValue =vkernelAvx.gradient(delta_x);// (vkernel.gradient(data));
                 //delta_ai-=PKernelGValue*mi_avx*(pi_avx/(density_i_avx) + pj_avx/(density_j_avx));
-
                 const Vector3f8 delta_v =vi_avx-vj_avx;
                 const Scalarf8 Tj_avx = convert_one(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.T[0], count);
-
                 const Scalarf8 pj_rho_avx = convert_one(&m_neighborhoodSearch->point_set(0).neighbor_list(0,i)[j], &particles.rho[0], count);
-                // viscosity
-                //pi.a += params.nu * (pj.v - particles.v[i]) * m/(pi.rho*pj.rho) * vkernel.second_derivative(neighbors[i][j].d, neighbors[i][j].d_squared);
-                //particles.a[i]+=0.125*const_Viscosity.reduce()/(particles.rho[k]) *(((particles.x[i]-particles.x[k])*vkernel.gradient(data))/(data.d_squared+h_squared.reduce()))*(particles.v[i] - particles.v[k]);
-                //delta_ai+=(delta_v)*((const_Viscosity/(pj_rho_avx))*(delta_x*VKernelGValue)/(delta_x.squaredNorm()+h_squared));
-                // artificial viscosity
-                //(teste viscosidade artificial)
-                //pi.a-=((m/(pi.rho))*P_ij(pi,pj,data)*vkernel.gradient(data));
-                //delta_ai-=VKernelGValue*((mi_avx/pi_rho_avx)*P_ij(delta_x,delta_v,pi_rho_avx,pj_rho_avx));
-
                 const Scalarf8 wj_avx = (mi_avx/pj_rho_avx)* pkernelAvx.value(delta_x.norm());
-
-                //w_avx += wj_avx;
-                //vi_smoothed_avx += vj_avx*wj_avx;
-                //Real wj = m/particles.rho[k] * pkernel.value(data.d, data.d_squared);
-                //particles.v_smoothed[i] += particles.v[data.idx] * wj;
                 //update temperature gradient;
-
                 //pi.dt += (m/pj.rho)*(pi.T-pj.T)*pkernel.second_derivative(neighbors[i][j].d, neighbors[i][j].d_squared);
-                p1_avx=((mi_avx/pj_rho_avx)*(FF*pi_rho_avx/(pi_rho_avx+pj_rho_avx)));
+                /*p1_avx=((mi_avx/pj_rho_avx)*(FF*pi_rho_avx/(pi_rho_avx+pj_rho_avx)));
                 deltaT = (Ti_avx-Tj_avx);
                 p3_avx = (((delta_x)*PKernelGValue)/(delta_x.squaredNorm()+ h_squared));
                 Real ddt = (p1_avx*deltaT*p3_avx).reduce();
-                particles.dt[i]+=ddt;
+                particles.dt[i]+=ddt;*/
+
+                deltaT = (Ti_avx-Tj_avx);
+                const Scalarf8 kappa = (particles.kappa[i]);
+                const Scalarf8 heatFlux =  (kappa * deltaT);
+                p3_avx =(((delta_x)*PKernelGValue)/(delta_x.squaredNorm()+ h_squared));
+                //heatFlux = p3_avx * heatFlux;
+                Real gradientT = (heatFlux * p3_avx/ (particles.rho[i])).reduce();
+                particles.dt[i] += gradientT;
 
                 // Troca por convecção q = hA (Tcorpo - Tfluido)
                 /*const Scalarf8 Tfluido = (22.0);
@@ -1632,14 +1619,6 @@ void stepThermal() {
                               << " ddt: " << ddt
                               << std::endl;
                 }*/
-
-                /*deltaT = (Ti_avx-Tj_avx);
-                const Scalarf8 kappa = (particles.kappa[i]);
-                const Scalarf8 heatFlux =  (kappa * deltaT);
-                p3_avx = kappa * (((delta_x)*PKernelGValue)/(delta_x.squaredNorm()+ h_squared));
-                //heatFlux = p3_avx * heatFlux;
-                Real gradientT = (heatFlux * p3_avx/ (particles.rho[i])).reduce();
-                particles.dt[i] += gradientT;*/
             }
         }
 
@@ -1690,20 +1669,47 @@ void stepThermal() {
                 }
 
                 glm::vec4 Colortmp = CelsiustoRGB(particles.T[i], i, 0);
+                float newHue = CelsiustoHue(particles.T[i]);
+
+                glm::vec4 OLDColortmp;
+                float oldHue = particles.colorh[i];
+
+                OLDColortmp[0] = particles.C[i][0];
+                OLDColortmp[1] = particles.C[i][1];
+                OLDColortmp[2] = particles.C[i][2];
 
                 particles.C[i][0]= Colortmp[0];
                 particles.C[i][1]= Colortmp[1];
                 particles.C[i][2]= Colortmp[2];
                 particles.C[i][3]= Colortmp[3];
 
+                particles.colorh[i] = newHue;
+
                 particles.dt[i]*=params.alpha;
+
+                if (i == 283)
+                {
+                std::cout  << "Ponto "<< i
+                << " temperatura velha: " << temppT
+                << ", temperatura nova: " <<  particles.T[i]
+                <<", old hue: " << oldHue
+                <<", new hue: " << newHue
+                << " Delta: " << particles.dt[i]
+                << " old RGB -- R: " << OLDColortmp[0]
+                << " G: " << OLDColortmp[1]
+                << " B: " << OLDColortmp[2]
+                << " NEW RGB -- R: " << particles.C[i][0]
+                << " G: " << particles.C[i][1]
+                << " B: " << particles.C[i][2]
+                << std::endl;
+                }
             }
             time+= params.dt;
         }
 
 
         std::chrono::duration<double> diff1= std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now()-t1);
-        tcollision +=diff1;
+        //tcollision +=diff1;
         //std:: cout << "Tmin = " << Tmin << " Tmax = " << Tmax << std::endl;
         n_step++;
         steps++;
