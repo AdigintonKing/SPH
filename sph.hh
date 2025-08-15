@@ -562,7 +562,7 @@ screenFilename = "screenVis";
     params.a = 0.7;
         
     // time step
-    params.dt = 0.001;
+    params.dt = 0.01;
     
     // surface extraction
     isovalue = 0.5;
@@ -581,12 +581,17 @@ screenFilename = "screenVis";
       compute_mass();
   }
   
-  float RGBtoCelsius(glm::vec4 Color, float hue){
+  float RGBtoCelsius(float hue, bool isinit){
 
 
       float temperatura;
-      float tminima = 21.9;
-      float tmaxima = 26.0;
+      if (hue >= 0.8) return 100.0;
+      float tminima = Tmin;
+      float tmaxima = Tmax;
+      if(isinit){
+           tminima = 0.0;
+           tmaxima = 100.0;
+      }
       float hueNorm;
 
       /*if (hue > 0.75){ //Manter coesao do colormap
@@ -595,9 +600,11 @@ screenFilename = "screenVis";
 
       float huedif = Huemax - Huemin;
       float tdif = tmaxima - tminima;
+      float htemp = hue - Huemin;
+      float hratio = htemp/ huedif;
 
-      hueNorm = (hue * huedif) + Huemin;
-      temperatura = tmaxima - (hueNorm * tdif) ;
+      //hueNorm = hratio + Huemin;
+      temperatura = tmaxima - (hratio * tdif) ;
 
       /*std::cout << "Temperatura: " << temperatura
           << " hueNorm: "<<hueNorm
@@ -609,14 +616,18 @@ screenFilename = "screenVis";
 }
 
 float CelsiustoHue(float temperaturapx){
-      float tdif;
+    float novohue;
+
+    if(temperaturapx >= 100.0) return 0.0;
+
+    float tdif;
       tdif = Tmax - Tmin;
 
       float temptemp = temperaturapx - Tmin;
       float ratio = temptemp / tdif;
 
       float huedif = Huemax - Huemin;
-      float novohue = Huemax - (huedif * ratio);
+      novohue = Huemax - (huedif * ratio);
 
       /*if (novohue > 1.0){
           novohue = 1.0;
@@ -630,11 +641,21 @@ float CelsiustoHue(float temperaturapx){
 
  glm::vec4 CelsiustoRGB(float temperaturapx, int i, bool isinit){
 
+     glm::vec4 RGBAT;
+
+     if (temperaturapx >= 100.0){ //Manter coesao do colormap
+         RGBAT[0] = 1.0;
+         RGBAT[1] = 0.0;
+         RGBAT[2] = 0.0;
+         RGBAT[3] = 1.0;
+
+         return RGBAT;
+     }
 
      float tdif;
-    //if (isinit == 1){
-         tdif = 26.0 - 21.9;
-    //}else tdif = Tmax - Tmin;
+    if (isinit == 1){
+         tdif = 100.0 - 0.0;
+    }else {tdif = Tmax - Tmin;}
 
      float temptemp = temperaturapx - Tmin;
      float ratio = temptemp / tdif;
@@ -649,15 +670,9 @@ float CelsiustoHue(float temperaturapx){
              Huemin = novohue;
          }
      }*/
-
-     /*if (novohue > 0.75){ //Manter coesao do colormap
-         novohue = 0.0;
-     }*/
      //particles.colorh[i] = novohue;
 
      int hueconta = static_cast<int>(novohue * 360);
-
-     glm::vec4 RGBAT;
 
      float c = particles.colorv[i] * particles.colors[i]; // chroma
      float x = c * (1 - std::abs(fmod(hueconta / 60.0, 2) - 1));
@@ -767,10 +782,12 @@ float CelsiustoHue(float temperaturapx){
       std::vector< glm::vec3 > temp_normals;
 
       //FILE * file = fopen("./../clouds/pedracopy.ply", "r");
-       //FILE * file = fopen("./../clouds/elefante_pr.ply", "r");
+      //FILE * file = fopen("./../clouds/elefante_pr.ply", "r");
       //FILE * file = fopen("./../clouds/topop.ply", "r");
       //FILE * file = fopen("./../clouds/sem_pedra.ply", "r");
-        FILE * file = fopen("./../clouds/sem_parede.ply", "r");
+      FILE * file = fopen("./../clouds/sem_parede.ply", "r");
+      //FILE * file = fopen("./../clouds/aaa.ply", "r");
+      //FILE * file = fopen("./../clouds/mini.ply", "r");
 
       if( file == NULL ){
           printf("Impossible to open the file !\n");
@@ -964,6 +981,9 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     particles.colorv.resize(pos.size());
     particles.kappa.resize(pos.size());
 
+    int countout = 0;
+    Huemin = 50.0;
+
     for (int i = 0; i < pos.size(); i++) {
         particles.x[i][0] =pos[i].x; particles.x[i][1] =pos[i].y; particles.x[i][2] =pos[i].z;// glm::vec4(pos[i].x,pos[i].y,pos[i].z,1.0);
         particles.v[i]={0.0,0.0,0.0};
@@ -983,30 +1003,35 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         float max = std::max({r, g, b});
         float min = std::min({r, g, b});
         float delta = max - min;
+        float huetemp;
 
         if (delta == 0) {
-            particles.colorh[i] = 0;
+            huetemp = 0;
         } else {
             if (max == r) {
-                particles.colorh[i] = 60 * fmod(((g - b) / delta), 6);
+                huetemp = 60 * fmod(((g - b) / delta), 6);
             } else if (max == g) {
-                particles.colorh[i] = 60 * (((b - r) / delta) + 2);
+                huetemp = 60 * (((b - r) / delta) + 2);
             } else { // max == b
-                particles.colorh[i] = 60 * (((r - g) / delta) + 4);
+                huetemp = 60 * (((r - g) / delta) + 4);
             }
-            if (particles.colorh[i] < 0) {
-                particles.colorh[i] += 360;
+            if (huetemp < 0) {
+                huetemp += 360;
             }
         }
 
-        particles.colorh[i] = particles.colorh[i] / 360;
+        huetemp = huetemp / 360;
 
-        /*if (particles.colorh[i] > 0.8){ //Manter coesao do colormap
-            particles.colorh[i] = 0.0;
+        if (huetemp < 0.8){
+            particles.colorh[i] = huetemp;
+            countout++;
+        }else{ //Manter coesao do colormap
+            particles.colorh[i] = 0;
             particles.C[i][0] = 1.0;
             particles.C[i][1] = 0.0;
             particles.C[i][2] = 0.0;
-        }*/
+
+        }
 
 
         if (particles.colorh[i] > Huemax){
@@ -1017,11 +1042,11 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     }
     std::cout  << "HUemax: " << Huemax
               << " huemin: " << Huemin
-              << " possize " << pos.size()
+              << " count pal " << countout
                      << std::endl;
 
-    //Tmin = 100.0;
-    Tmax=26.0;Tmin=21.9;
+    Tmin = 100.0;
+    //Tmax=100.0;Tmin=100.0;
     for(int j = 0; j < pos.size(); j++){
         glm::vec4 coresTemporarias;
         coresTemporarias[0] = particles.C[j][0];
@@ -1029,16 +1054,7 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         coresTemporarias[2] = particles.C[j][2];
         coresTemporarias[3] = particles.C[j][3];
 
-        particles.T[j] = RGBtoCelsius(coresTemporarias, particles.colorh[j]);
-
-        //Teste Celsius
-        //glm::vec4 testeCelsius;
-        //testeCelsius = CelsiustoRGB(particles.T[j], j, 1);
-
-        /*particles.C[j][0]= testeCelsius[0];
-        particles.C[j][1]= testeCelsius[1];
-        particles.C[j][2]= testeCelsius[2];
-        particles.C[j][3]= testeCelsius[3];*/
+        particles.T[j] = RGBtoCelsius(particles.colorh[j], 1);
 
         if (particles.T[j] > Tmax){
             std::cout  << "Ponto maximo: " << j
@@ -1071,11 +1087,24 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
     }
 
     for(int l = 0; l < pos.size(); l++){ // Teste de cores sem alteracao
+
+
         glm::vec4 coresTemporarias2;
         coresTemporarias2[0] = particles.C[l][0];
         coresTemporarias2[1] = particles.C[l][1];
         coresTemporarias2[2] = particles.C[l][2];
         coresTemporarias2[3] = particles.C[l][3];
+
+        if (l == 283) std::cout << "(Ponto de teperatura maxima pre teste -- "<< " R " << coresTemporarias2[0]
+                      << " G " << coresTemporarias2 [1]
+                      << " B " << coresTemporarias2[2]
+                      << "Temperatura " << particles.T[l]
+                      << " Hue " << particles.colorh[l]
+                      << " X: " << particles.x[l][0]
+                      << " Y: " << particles.x[l][1]
+                      << " Z: " << particles.x[l][2]
+                      << ")" << std::endl;
+
 
         //Teste Celsius
         glm::vec4 testeCelsius;
@@ -1085,6 +1114,18 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         particles.C[l][1]= testeCelsius[1];
         particles.C[l][2]= testeCelsius[2];
         particles.C[l][3]= testeCelsius[3];
+
+        if (l == 283) std::cout << "(Ponto de teperatura maxima pos teste "<< " R " << testeCelsius[0]
+                      << " G " << testeCelsius [1]
+                      << " B " << testeCelsius[2]
+                      << "Temperatura " << particles.T[l]
+                      << " Hue " << particles.colorh[l]
+                      << " X: " << particles.x[l][0]
+                      << " Y: " << particles.x[l][1]
+                      << " Z: " << particles.x[l][2]
+                      << ")" << std::endl;
+
+        //particles.T[l] = RGBtoCelsius(particles.colorh[l], 1);
     }
     int q = smoothing_radius(this->spacing * params.rel_smoothing_radius);
     // reserve memory for  and compute
@@ -1598,57 +1639,18 @@ void stepThermal() {
                 particles.dt[i]+=ddt;*/
 
                 deltaT = (Ti_avx-Tj_avx);
-                const Scalarf8 kappa = (particles.kappa[i]);
-                const Scalarf8 heatFlux =  (kappa * deltaT);
+                Scalarf8 kappa = (particles.kappa[i]);
+                Scalarf8 heatFlux =  (kappa * deltaT);
+                p1_avx=((mi_avx/pj_rho_avx)*(FF*pi_rho_avx/(pi_rho_avx+pj_rho_avx)));
                 p3_avx =(((delta_x)*PKernelGValue)/(delta_x.squaredNorm()+ h_squared));
                 //heatFlux = p3_avx * heatFlux;
-                Real gradientT = (heatFlux * p3_avx/ (particles.rho[i])).reduce();
+                Real gradientT = (p1_avx * heatFlux * p3_avx).reduce();
                 particles.dt[i] += gradientT;
-
-                // Troca por conveccao q = hA (Tcorpo - Tfluido)
-                /*float Tfluidos = 22.0;
-                float aga = 50.0;
-                float massA = 0.001;
-                const Scalarf8 Tfluido = (Tfluidos);
-                const Scalarf8 deltaTc = (massa * aga * (Tj_avx - Tfluido));
-                Real ddconv = deltaTc.reduce();
-                Real gradientTc = (ddconv * p3_avx/ (particles.rho[i])).reduce();
-                particles.dt[i] += gradientTc;*/
-
-                //Troca por irradiacaos
-                /*if (j == 0){
-                    const  float sigma = 5.67e-8; // Constante de Stefan-Boltzmann (W/m^2K^4)
-                    float rad_solar = 1000.0;
-                    float reflet = 0.2;
-                    float emiss = 0.9;
-
-                    float T_absorvida = (1 - reflet) * rad_solar * 0.001;
-                    float T_perdida = emiss * sigma * pow(particles.T[i], 4) * 0.001;
-                    float Tfin = T_absorvida - T_perdida;
-
-                    const Scalarf8 heatFluxi =  (1.0 * Tfin);
-                    Real gradientTi = (heatFluxi * p3_avx/ (particles.rho[i])).reduce();
-                    particles.dt[i] += gradientTi;
-                }*/
-
-                /*Real p1aux = p1_avx.reduce();
-                Real p3aux = p3_avx.reduce();
-                Real dTaux = deltaT.reduce();
-                Real t1aux = Ti_avx.reduce();
-                Real t2aux = Tj_avx.reduce();
-                if (i == 21096)
-                {
-                    std::cout  << "Ponto "<< j
-                              << " p1avx : " << p1aux
-                              << ", deltaT: " <<  dTaux
-                              << " p3avx " << p3aux
-                              << " ddt: " << ddt
-                              << std::endl;
-                }*/
-            }
+                }
         }
 
         NormMaxV=-100000.0;NormMinV=10000.0;
+
 
         std::chrono::duration<double> diff= std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now()-t0);
         //tforce +=diff;
@@ -1659,6 +1661,9 @@ void stepThermal() {
         {
 #pragma omp for schedule(static)
             for (int i = 0; i < n_particles(); ++i) {
+
+                //Injecao / remocao dec calor
+                //particles.dt[i] += -10000.0;
 
                 float temppT = particles.T[i];
 
@@ -1683,12 +1688,12 @@ void stepThermal() {
                               //<< std::endl;
                 //}
 
-                if(particles.T[i]>Tmax && Tmax <= 26.0)
+                if(particles.T[i]>Tmax && particles.T[i] <= 100.0)
                 {
                     Tmax = particles.T[i];
                     //std::cout  << i << std::endl;
                 }
-                if(particles.T[i]<Tmin && Tmin >= 21.9)
+                if(particles.T[i]<Tmin && particles.T[i] >= 0.0)
                 {
                     Tmin = particles.T[i];
                     //std::cout  << i << std::endl;
@@ -1711,7 +1716,7 @@ void stepThermal() {
 
                 particles.colorh[i] = newHue;
 
-                /*if (i == 283)
+                if (i == 283)
                 {
                 std::cout  << "Ponto "<< i
                 << " temperatura velha: " << temppT
@@ -1725,29 +1730,46 @@ void stepThermal() {
                 << " NEW RGB -- R: " << particles.C[i][0]
                 << " G: " << particles.C[i][1]
                 << " B: " << particles.C[i][2]
+                << " X: " << particles.x[i][0]
+                                              << " Y: " << particles.x[i][1]
+                                              << " Z: " << particles.x[i][2]
                 << std::endl;
 
                 particles.dt[i]*=params.alpha;
-                }*/
+                }
             }
+
+
+
             time+= params.dt;
         }
-
 
         std::chrono::duration<double> diff1= std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now()-t1);
         //tcollision +=diff1;
         //std:: cout << "Tmin = " << Tmin << " Tmax = " << Tmax << std::endl;
         n_step++;
         steps++;
+
+        /*float tminT = 1000;
+        float tmaxT = -1000;
+
+        for (int l = 0; l < n_particles(); l++) {
+            if (particles.T[l] < tminT) tminT = particles.T[l];
+            if (particles.T[l] > tmaxT) tmaxT = particles.T[l];
+        }
+
+        Tmax = tmaxT;
+        Tmin = tminT;*/
+
         if(n_step % 500 == 0)
         {
             m_neighborhoodSearch->z_sort();
             for (auto j = 0u; j < m_neighborhoodSearch->n_point_sets(); ++j)
             {
                 auto const& d = m_neighborhoodSearch->point_set(j);
-                d.sort_field(particles.x.data());
+                //d.sort_field(particles.x.data());
                 d.sort_field(particles.v.data());
-                d.sort_field(particles.C.data());
+                //d.sort_field(particles.C.data());
             }
 
         }
@@ -1971,8 +1993,8 @@ inline void WriteScreenImage() {
         for (auto j = 0u; j < m_neighborhoodSearch->n_point_sets(); ++j)
         {
             auto const& d = m_neighborhoodSearch->point_set(j);
-            d.sort_field(particles.x.data());
-            d.sort_field(particles.C.data());
+            //d.sort_field(particles.x.data());
+            //d.sort_field(particles.C.data());
 
         }
         m_neighborhoodSearch->find_neighbors();
