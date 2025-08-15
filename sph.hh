@@ -562,7 +562,7 @@ screenFilename = "screenVis";
     params.a = 0.7;
         
     // time step
-    params.dt = 0.01;
+    params.dt = 0.001;
     
     // surface extraction
     isovalue = 0.5;
@@ -785,9 +785,9 @@ float CelsiustoHue(float temperaturapx){
       //FILE * file = fopen("./../clouds/elefante_pr.ply", "r");
       //FILE * file = fopen("./../clouds/topop.ply", "r");
       //FILE * file = fopen("./../clouds/sem_pedra.ply", "r");
-      FILE * file = fopen("./../clouds/sem_parede.ply", "r");
+      //FILE * file = fopen("./../clouds/sem_parede.ply", "r");
       //FILE * file = fopen("./../clouds/aaa.ply", "r");
-      //FILE * file = fopen("./../clouds/mini.ply", "r");
+      FILE * file = fopen("./../clouds/mini.ply", "r");
 
       if( file == NULL ){
           printf("Impossible to open the file !\n");
@@ -994,7 +994,7 @@ void initFromCloud(float jitter = 0.02, float spacing = 0.015){
         particles.C[i][3]= Vcolor[i][3];
         particles.colorv[i] = 1.0;
         particles.colors[i] = 1.0;
-        particles.kappa[i] = 0.6; // Condutividade termica
+        particles.kappa[i] = 10.6; // Condutividade termica
 
         float r = particles.C[i][0];
         float g = particles.C[i][1];
@@ -1663,7 +1663,7 @@ void stepThermal() {
             for (int i = 0; i < n_particles(); ++i) {
 
                 //Injecao / remocao dec calor
-                //particles.dt[i] += -10000.0;
+                particles.dt[i] += 10000.0;
 
                 float temppT = particles.T[i];
 
@@ -1716,7 +1716,7 @@ void stepThermal() {
 
                 particles.colorh[i] = newHue;
 
-                if (i == 283)
+                /*if (i == 283)
                 {
                 std::cout  << "Ponto "<< i
                 << " temperatura velha: " << temppT
@@ -1730,13 +1730,9 @@ void stepThermal() {
                 << " NEW RGB -- R: " << particles.C[i][0]
                 << " G: " << particles.C[i][1]
                 << " B: " << particles.C[i][2]
-                << " X: " << particles.x[i][0]
-                                              << " Y: " << particles.x[i][1]
-                                              << " Z: " << particles.x[i][2]
                 << std::endl;
-
+                }*/
                 particles.dt[i]*=params.alpha;
-                }
             }
 
 
