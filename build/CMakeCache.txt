@@ -151,10 +151,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
-
-//Enable colored diagnostics throughout.
-CMAKE_COLOR_DIAGNOSTICS:BOOL=1
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -1616,7 +1613,7 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 EXPAT_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: EXPAT_LIBRARY
 EXPAT_LIBRARY-ADVANCED:INTERNAL=1
-EXT_CMAKE_BUILD_TYPE:INTERNAL=
+EXT_CMAKE_BUILD_TYPE:INTERNAL=Release
 //ADVANCED property for variable: Eigen3_INCLUDE_DIR
 Eigen3_INCLUDE_DIR-ADVANCED:INTERNAL=1
 ExternalInstallDir:INTERNAL=/home/adiginton/Documents/SPH_heat/build/extern/install
@@ -2699,7 +2696,7 @@ pkgcfg_lib_PC_libusb_usb-1.0-ADVANCED:INTERNAL=1
 pkgcfg_lib_PKG_FONTCONFIG_fontconfig-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_PKG_FONTCONFIG_freetype
 pkgcfg_lib_PKG_FONTCONFIG_freetype-ADVANCED:INTERNAL=1
-prefix_result:INTERNAL=/usr/lib
+prefix_result:INTERNAL=/usr/local/lib
 //ADVANCED property for variable: utf8cpp_INCLUDE_DIR
 utf8cpp_INCLUDE_DIR-ADVANCED:INTERNAL=1
 

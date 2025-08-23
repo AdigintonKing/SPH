@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/adiginton/Documents/SPH_heat/build/extern/CompactNSearch/src/Ext_NeighborhoodSearch/include
 
-CXX_FLAGS =  -fopenmp -std=gnu++11
+CXX_FLAGS =  -fopenmp -O3 -DNDEBUG -std=gnu++11
 
